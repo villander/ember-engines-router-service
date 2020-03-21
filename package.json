@@ -1,7 +1,7 @@
 {
   "name": "ember-engines-router-service",
   "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Provides the Router service for ember-engines.",
   "keywords": [
     "ember-addon"
   ],
