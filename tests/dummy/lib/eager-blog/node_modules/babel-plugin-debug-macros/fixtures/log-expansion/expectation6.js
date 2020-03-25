@@ -1,1 +1,0 @@
-(true && console.log('This is a logging'));
