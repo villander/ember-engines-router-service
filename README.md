@@ -22,7 +22,7 @@ ember install ember-engines-router-service
 
 ## Usage
 
-Basically you have all [RouterService](https://api.emberjs.com/ember/release/classes/RouterService) API with `*External` sufix to each one using new "external routing" APIs such as `transitionToExternal` and `isActiveExternal`.
+Basically you have all [RouterService](https://api.emberjs.com/ember/release/classes/RouterService) API **inside each engine** such as `transitionTo` and `isActive` and also the same one using new "external routing" APIs such as `transitionToExternal` and `isActiveExternal` to link external routes.
 
 ------------------------------------------------------------------------------
 ```js
@@ -39,8 +39,18 @@ export default class SomeComponent extends Component {
   }
 
   @action
+  transitionToAdmin() {
+    this.router.transitionTo('admin.route');
+  }
+
+  @action
   redirectToHome() {
     this.router.replaceWithExternal('other.route');
+  }
+
+  @action
+  redirectToLogin() {
+    this.router.replaceWith('login.route');
   }
 }
 ```
