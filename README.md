@@ -1,7 +1,7 @@
 ember-engines-router-service
 ==============================================================================
 
-[Short description of the addon.]
+Provides the [Router service](https://api.emberjs.com/ember/release/classes/RouterService) for ember-engines.
 
 
 Compatibility
@@ -21,9 +21,33 @@ ember install ember-engines-router-service
 
 
 Usage
-------------------------------------------------------------------------------
 
-[Longer description of how to use the addon in apps.]
+Basically you have all [RouterService](https://api.emberjs.com/ember/release/classes/RouterService) API with `*External` sufix to each one using new "external routing" APIs such as `transitionToExternal` and `isActiveExternal`.
+
+Using the external routes will take advantage of new "external routing" APIs
+
+------------------------------------------------------------------------------
+```js
+import Component from '@glimmer/component';
+import { inject as service } from '@ember/service';
+import { action } from "@ember/object";
+
+export default class SomeComponent extends Component {
+  @service router;
+
+  @action
+  transitionToHome() {
+    this.router.transitionToExternal('other.route');
+  }
+
+  @action
+  redirectToHome() {
+    this.router.replaceWithExternal('other.route');
+  }
+}
+```
+
+For further documentation on this subject, view the [Engine Linking RFC](https://github.com/emberjs/rfcs/pull/122).
 
 
 Contributing
