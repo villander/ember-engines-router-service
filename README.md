@@ -1,5 +1,7 @@
 # ember-engines-router-service
 
+[![Build Status](https://travis-ci.org/villander/ember-engines-router-service.svg?branch=master)](https://travis-ci.org/villander/ember-engines-router-service)
+
 This addon provides an API for authoring [Router service](https://api.emberjs.com/ember/release/classes/RouterService) in ember-engines.
 
 
