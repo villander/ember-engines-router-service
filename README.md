@@ -1,7 +1,6 @@
 # ember-engines-router-service
-==============================================================================
 
-Provides the [Router service](https://api.emberjs.com/ember/release/classes/RouterService) for ember-engines.
+This addon provides an API for authoring [Router service](https://api.emberjs.com/ember/release/classes/RouterService) in ember-engines.
 
 
 ## Compatibility
