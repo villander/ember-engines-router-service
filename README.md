@@ -1,10 +1,10 @@
-ember-engines-router-service
+# ember-engines-router-service
 ==============================================================================
 
 Provides the [Router service](https://api.emberjs.com/ember/release/classes/RouterService) for ember-engines.
 
 
-Compatibility
+## Compatibility
 ------------------------------------------------------------------------------
 
 * Ember.js v3.12 or above
@@ -12,7 +12,7 @@ Compatibility
 * Node.js v10 or above
 
 
-Installation
+## Installation
 ------------------------------------------------------------------------------
 
 ```
@@ -20,11 +20,9 @@ ember install ember-engines-router-service
 ```
 
 
-Usage
+## Usage
 
 Basically you have all [RouterService](https://api.emberjs.com/ember/release/classes/RouterService) API with `*External` sufix to each one using new "external routing" APIs such as `transitionToExternal` and `isActiveExternal`.
-
-Using the external routes will take advantage of new "external routing" APIs
 
 ------------------------------------------------------------------------------
 ```js
@@ -50,13 +48,13 @@ export default class SomeComponent extends Component {
 For further documentation on this subject, view the [Engine Linking RFC](https://github.com/emberjs/rfcs/pull/122).
 
 
-Contributing
+## Contributing
 ------------------------------------------------------------------------------
 
 See the [Contributing](CONTRIBUTING.md) guide for details.
 
 
-License
+## License
 ------------------------------------------------------------------------------
 
 This project is licensed under the [MIT License](LICENSE.md).
