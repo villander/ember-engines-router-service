@@ -1,18 +1,39 @@
 import Service from '@ember/service';
 import { assert } from '@ember/debug';
-import { computed, get } from '@ember/object';
+import { action, computed, get } from '@ember/object';
 import { reads } from '@ember/object/computed';
 import { getOwner } from '@ember/application';
+import Evented from '@ember/object/evented';
 import { namespaceEngineRouteName } from '../utils/namespace-engine-route-name';
 import { getRootOwner } from '../utils/root-owner';
 
-export default class EngineRouterService extends Service {
+export default class EngineRouterService extends Service.extend(Evented) {
   init() {
     super.init();
 
     this._externalRoutes = getOwner(this)._externalRoutes;
     this._mountPoint = getOwner(this).mountPoint;
     this.rootApplication = getRootOwner(this);
+
+    this.externalRouter.on('routeWillChange', this.onRouteWillChange);
+    this.externalRouter.on('routeDidChange', this.onRouteDidChange);
+  }
+
+  destroy() {
+    this.externalRouter.off('routeWillChange', this.onRouteWillChange);
+    this.externalRouter.off('routeDidChange', this.onRouteDidChange);
+
+    super.destroy();
+  }
+
+  @action
+  onRouteWillChange(...args) {
+    this.trigger('routeWillChange', ...args);
+  }
+
+  @action
+  onRouteDidChange(...args) {
+    this.trigger('routeDidChange', ...args);
   }
 
   @reads('externalRouter.rootURL') rootURL;
