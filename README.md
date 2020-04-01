@@ -24,7 +24,7 @@ ember install ember-engines-router-service
 
 ## Usage
 
-Basically you have all [RouterService](https://api.emberjs.com/ember/release/classes/RouterService) API **inside each engine** such as `transitionTo` and `isActive` and also the same one using new "external routing" APIs such as `transitionToExternal` and `isActiveExternal` to link external routes.
+Basically you have all [RouterService](https://api.emberjs.com/ember/release/classes/RouterService) API **inside each engine** such as `transitionTo` and `isActive` and also the same one using new "external routing" APIs such as `transitionToExternal` and `isActiveExternal` to link `externalRoutes`.
 
 ------------------------------------------------------------------------------
 ```js
