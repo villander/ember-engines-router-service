@@ -3,7 +3,7 @@
 [![npm version](https://badge.fury.io/js/ember-engines-router-service.svg)](https://badge.fury.io/js/ember-engines-router-service)
 [![Build Status](https://travis-ci.org/villander/ember-engines-router-service.svg?branch=master)](https://travis-ci.org/villander/ember-engines-router-service)
 
-This addon provides an API for authoring [Router service](https://api.emberjs.com/ember/release/classes/RouterService) in ember-engines.
+This addon provides an API for authoring a [Router service](https://api.emberjs.com/ember/release/classes/RouterService) used in ember-engines.
 
 
 ## Compatibility
@@ -24,7 +24,7 @@ ember install ember-engines-router-service
 
 ## Usage
 
-Basically you have all [RouterService](https://api.emberjs.com/ember/release/classes/RouterService) API **inside each engine** such as `transitionTo` and `isActive` and also the same one using new "external routing" APIs such as `transitionToExternal` and `isActiveExternal` to link `externalRoutes`.
+Basically you have the full [RouterService](https://api.emberjs.com/ember/release/classes/RouterService) API **inside each engine**. That means you can use APIs such as `transitionTo` and `isActive`, plus the new "external routing" APIs such as `transitionToExternal` and `isActiveExternal` which help link `externalRoutes` together.
 
 ------------------------------------------------------------------------------
 ```js
