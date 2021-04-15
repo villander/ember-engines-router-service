@@ -27,6 +27,23 @@ module('Acceptance | routeless engine demo', function (hooks) {
       );
     });
 
+    test('transitionTo transitions to the parent application from within an engine and returns a thenable Transition object', async function (
+      assert
+    ) {
+      assert.expect(2);
+
+      await visit('/');
+      await click('.routeable-engine');
+      await click('.blog-post-1-link-ch');
+      await click('.routable-transition-to-url-button');
+
+      assert.equal(currentURL(), '/routable-engine-demo/blog/post/2?lang=Korean');
+
+      assert.ok(
+        find('.routable-transition-to-url-button').classList.contains('transitioned-to-url')
+      );
+    });
+
     test('replaceWithExternal transitions to the parent application from within an engine and returns a thenable Transition object', async function (
       assert
     ) {
