@@ -12,6 +12,12 @@ export default Controller.extend({
       });
     },
 
+    transitionToByServiceByUrl(url) {
+      get(this, 'router').transitionTo(url).then(() => {
+        set(this, 'transitionTo', true);
+      });
+    },
+
     replaceWithHomeByService() {
       get(this, 'router').replaceWithExternal('home').then(() => {
         set(this, 'replaceWithExternal', true);

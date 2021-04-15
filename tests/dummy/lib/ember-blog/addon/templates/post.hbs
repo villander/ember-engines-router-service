@@ -32,6 +32,10 @@
     Go home (Engine Router Service)
 </button>
 
+<button {{action "transitionToByServiceByUrl" "/routable-engine-demo/blog/post/2?lang=Korean"}} class="routable-transition-to-url-button {{if transitionTo 'transitioned-to-url'}}">
+    Go to direct URL (Engine Router Service)
+</button>
+
 <button {{action "replaceWithHomeByService"}} class="routable-replace-external-button {{if replaceWithExternal 'replaced-with-external'}}">
     Go home progammatically (Engine Router Service)
 </button>
