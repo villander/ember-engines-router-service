@@ -6,6 +6,7 @@ import { getOwner } from '@ember/application';
 import Evented from '@ember/object/evented';
 import { namespaceEngineRouteName } from '../utils/namespace-engine-route-name';
 import { getRootOwner } from '../utils/root-owner';
+import { resemblesURL } from '../utils/helpers';
 
 export default class EngineRouterService extends Service.extend(Evented) {
   init() {
@@ -61,6 +62,9 @@ export default class EngineRouterService extends Service.extend(Evented) {
   }
 
   transitionTo(routeName, ...args) {
+    if (resemblesURL(routeName)) {
+      return get(this, 'externalRouter').transitionTo(routeName);
+    }
     return get(this, 'externalRouter').transitionTo(
       namespaceEngineRouteName(this._mountPoint, routeName),
       ...args
@@ -75,6 +79,9 @@ export default class EngineRouterService extends Service.extend(Evented) {
   }
 
   replaceWith(routeName, ...args) {
+    if (resemblesURL(routeName)) {
+      return get(this, 'externalRouter').replaceWith(routeName);
+    }
     return get(this, 'externalRouter').replaceWith(
       namespaceEngineRouteName(this._mountPoint, routeName),
       ...args
