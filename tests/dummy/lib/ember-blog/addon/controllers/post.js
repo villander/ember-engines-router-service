@@ -28,6 +28,12 @@ export default Controller.extend({
       if (get(this, 'router').isActiveExternal('home')) {
         set(this, 'isActiveExternal', true);
       }
+    },
+
+    transitionToUrlByService(url) {
+      get(this, 'router').transitionTo(url).then(() => {
+        set(this, 'transitionTo', true);
+      });
     }
   }
 });

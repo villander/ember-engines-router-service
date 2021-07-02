@@ -50,3 +50,7 @@
 <button {{action "checkActiveState"}} class="routable-is-active-external-button {{if isActiveExternal 'is-active-external'}}">
     isActive in (Engine Router Service)
 </button>
+
+<button {{action "transitionToUrlByService" "/routable-engine-demo/blog/post/2?lang=Korean"}} class="routable-transition-to-url-button {{if transitionTo 'transitioned-to-url'}}">
+  Go to direct URL (Engine Router Service)
+</button>
