@@ -4870,15 +4870,16 @@ ember-source@~3.18.0-beta.3:
     silent-error "^1.1.1"
 
 ember-template-lint@^2.4.0:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/ember-template-lint/-/ember-template-lint-2.6.0.tgz#e36ddca9af1e32be2931c539342de92e3d351525"
-  integrity sha512-VhQDaGwOS+39dUQI61X2NnW8WloecKPkiU5+xR7X8th5GY2WV5wJhPLAsHHoz1EPPrGtU53NWSdMsIER5q080g==
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/ember-template-lint/-/ember-template-lint-2.7.0.tgz#635653616c613afe2dfe6e42e2fa8a8ac8c2f341"
+  integrity sha512-UBQNoGMju5sCxAEZDyJwLaIOeavnWBauHajxBafG9IT+zpwwWC9nK/ETiylDqgW+9yvPCTMHLQLxfgTwCJJoPA==
   dependencies:
     chalk "^4.0.0"
     ember-template-recast "^4.1.4"
     find-up "^4.1.0"
     get-stdin "^7.0.0"
     globby "^11.0.0"
+    is-valid-glob "^1.0.0"
     micromatch "^4.0.2"
     resolve "^1.17.0"
     yargs "^15.3.1"
@@ -6967,6 +6968,11 @@ is-typedarray@^1.0.0, is-typedarray@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/is-typedarray/-/is-typedarray-1.0.0.tgz#e479c80858df0c1b11ddda6940f96011fcda4a9a"
   integrity sha1-5HnICFjfDBsR3dppQPlgEfzaSpo=
+
+is-valid-glob@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/is-valid-glob/-/is-valid-glob-1.0.0.tgz#29bf3eff701be2d4d315dbacc39bc39fe8f601aa"
+  integrity sha1-Kb8+/3Ab4tTTFdusw5vDn+j2Aao=
 
 is-windows@^1.0.1, is-windows@^1.0.2:
   version "1.0.2"
@@ -9591,12 +9597,7 @@ semver@^6.0.0, semver@^6.1.0, semver@^6.1.1, semver@^6.1.2, semver@^6.3.0:
   resolved "https://registry.yarnpkg.com/semver/-/semver-6.3.0.tgz#ee0a64c8af5e8ceea67687b133761e1becbd1d3d"
   integrity sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==
 
-semver@^7.0.0, semver@^7.3.2:
-  version "7.3.2"
-  resolved "https://registry.yarnpkg.com/semver/-/semver-7.3.2.tgz#604962b052b81ed0786aae84389ffba70ffd3938"
-  integrity sha512-OrOb32TeeambH6UrhtShmF7CRDqhL6/5XpPNp2DuRH6+9QLw/orhp72j87v8Qa1ScDkvrrBNpZcDejAirJmfXQ==
-
-semver@^7.1.3:
+semver@^7.0.0, semver@^7.1.3, semver@^7.3.2:
   version "7.3.2"
   resolved "https://registry.yarnpkg.com/semver/-/semver-7.3.2.tgz#604962b052b81ed0786aae84389ffba70ffd3938"
   integrity sha512-OrOb32TeeambH6UrhtShmF7CRDqhL6/5XpPNp2DuRH6+9QLw/orhp72j87v8Qa1ScDkvrrBNpZcDejAirJmfXQ==
