@@ -1,6 +1,6 @@
 {
   "name": "ember-engines-router-service",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Provides the Router service for ember-engines.",
   "keywords": [
     "ember-addon"
