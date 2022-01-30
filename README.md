@@ -1,7 +1,8 @@
 # ember-engines-router-service
 
 [![npm version](https://badge.fury.io/js/ember-engines-router-service.svg)](https://badge.fury.io/js/ember-engines-router-service)
-[![Build Status](https://travis-ci.org/villander/ember-engines-router-service.svg?branch=master)](https://travis-ci.org/villander/ember-engines-router-service)
+[![GitHub Actions CI][github-actions-badge]][github-actions-ci-url]
+[![Build Status](https://github.com/villander/ember-engines-router-service/workflows/CI/badge.svg)](https://github.com/villander/ember-engines-router-service/actions?query=workflow%3ACI)
 
 This addon provides an API for authoring a [Router service](https://api.emberjs.com/ember/release/classes/RouterService) used in ember-engines.
 
