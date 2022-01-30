@@ -68,7 +68,7 @@
     "qunit-dom": "^1.1.0"
   },
   "engines": {
-    "node": "10.* || >= 12"
+    "node": "12.* || 14.* || >= 16"
   },
   "changelog": {
     "repo": "villander/ember-engines-router-service",
