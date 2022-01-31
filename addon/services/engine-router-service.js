@@ -1,6 +1,6 @@
 import Service from '@ember/service';
 import { assert } from '@ember/debug';
-import { action, computed, get } from '@ember/object';
+import { action, computed } from '@ember/object';
 import { reads } from '@ember/object/computed';
 import { getOwner } from '@ember/application';
 import Evented from '@ember/object/evented';
@@ -9,8 +9,8 @@ import { getRootOwner } from '../utils/root-owner';
 import { resemblesURL } from '../utils/resembles-url';
 
 export default class EngineRouterService extends Service.extend(Evented) {
-  init() {
-    super.init();
+  constructor(...args) {
+    super(...args);
 
     this._externalRoutes = getOwner(this)._externalRoutes;
     this._mountPoint = getOwner(this).mountPoint;
@@ -20,11 +20,11 @@ export default class EngineRouterService extends Service.extend(Evented) {
     this.externalRouter.on('routeDidChange', this.onRouteDidChange);
   }
 
-  destroy() {
+  willDestroy() {
     this.externalRouter.off('routeWillChange', this.onRouteWillChange);
     this.externalRouter.off('routeDidChange', this.onRouteDidChange);
 
-    super.destroy();
+    super.willDestroy();
   }
 
   @action
@@ -41,12 +41,14 @@ export default class EngineRouterService extends Service.extend(Evented) {
 
   @reads('externalRouter.currentURL') currentURL;
 
-  @computed('externalRouter.currentRouteName')
+  @computed('_mountPoint.length', 'externalRouter.currentRouteName')
   get currentRouteName() {
-    if (get(this, 'externalRouter').currentRouteName === this._mountPoint) {
+    if (this.externalRouter.currentRouteName === this._mountPoint) {
       return 'application';
     }
-    return get(this, 'externalRouter').currentRouteName.slice(this._mountPoint.length + 1);
+    return this.externalRouter.currentRouteName.slice(
+      this._mountPoint.length + 1
+    );
   }
 
   get externalRouter() {
@@ -63,17 +65,17 @@ export default class EngineRouterService extends Service.extend(Evented) {
 
   transitionTo(routeName, ...args) {
     if (resemblesURL(routeName)) {
-      return get(this, 'externalRouter').transitionTo(routeName);
+      return this.externalRouter.transitionTo(routeName);
     }
 
-    return get(this, 'externalRouter').transitionTo(
+    return this.externalRouter.transitionTo(
       namespaceEngineRouteName(this._mountPoint, routeName),
       ...args
     );
   }
 
   transitionToExternal(routeName, ...args) {
-    return get(this, 'externalRouter').transitionTo(
+    return this.externalRouter.transitionTo(
       this.getExternalRouteName(routeName),
       ...args
     );
@@ -81,45 +83,45 @@ export default class EngineRouterService extends Service.extend(Evented) {
 
   replaceWith(routeName, ...args) {
     if (resemblesURL(routeName)) {
-      return get(this, 'externalRouter').replaceWith(routeName);
+      return this.externalRouter.replaceWith(routeName);
     }
 
-    return get(this, 'externalRouter').replaceWith(
+    return this.externalRouter.replaceWith(
       namespaceEngineRouteName(this._mountPoint, routeName),
       ...args
     );
   }
 
   replaceWithExternal(routeName, ...args) {
-    return get(this, 'externalRouter').replaceWith(
+    return this.externalRouter.replaceWith(
       this.getExternalRouteName(routeName),
       ...args
     );
   }
 
   urlFor(routeName, ...args) {
-    return get(this, 'externalRouter').urlFor(
+    return this.externalRouter.urlFor(
       namespaceEngineRouteName(this._mountPoint, routeName),
       ...args
     );
   }
 
   urlForExternal(routeName, ...args) {
-    return get(this, 'externalRouter').urlFor(
+    return this.externalRouter.urlFor(
       this.getExternalRouteName(routeName),
       ...args
     );
   }
 
   isActive(routeName, ...args) {
-    return get(this, 'externalRouter').isActive(
+    return this.externalRouter.isActive(
       namespaceEngineRouteName(this._mountPoint, routeName),
       ...args
     );
   }
 
   isActiveExternal(routeName, ...args) {
-    return get(this, 'externalRouter').isActive(
+    return this.externalRouter.isActive(
       this.getExternalRouteName(routeName),
       ...args
     );
