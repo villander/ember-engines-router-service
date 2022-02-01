@@ -5,16 +5,16 @@
 <p class="language">{{this.lang}}</p>
 
 <p>
-  <LintTo @route="post.comments" @model="1" class="routable-post-comments-link">Comments</LintTo>
-  <LintTo @route="post.likes" @model="1" class="routable-post-likes-link">Likes</LintTo>
-  <LintTo @route="post.diggs" @model="1" class="routable-post-diggs-link">Diggs</LintTo>
+  <LinkTo @route="post.comments" @model="1" class="routable-post-comments-link">Comments</LinkTo>
+  <LinkTo @route="post.likes" @model="1" class="routable-post-likes-link">Likes</LinkTo>
+  <LinkTo @route="post.diggs" @model="1" class="routable-post-diggs-link">Diggs</LinkTo>
 </p>
 
 {{outlet}}
 
-  <LintToExternal @route="home" class="routable-post-home-link">Go home</LintToExternal>
-  <LintTo @route="index" class="routable-post-blog-home-link">Go to blog home</LintTo>
-  <LintTo @route="application" class="routable-post-blog-home-link-app">Also goes to blog home</LintTo>
+  <LinkToExternal @route="home" class="routable-post-home-link">Go home</LinkToExternal>
+  <LinkTo @route="index" class="routable-post-blog-home-link">Go to blog home</LinkTo>
+  <LinkTo @route="application" class="routable-post-blog-home-link-app">Also goes to blog home</LinkTo>
 
 {{!-- template-lint-disable no-action --}}
 <LinkTo @query={{hash lang="Japanese"}} class="routable-post-jp-link">Go to Japanese version</LinkTo>
