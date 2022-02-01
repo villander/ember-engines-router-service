@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function (environment) {
+module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'ember-chat',
     environment: environment,

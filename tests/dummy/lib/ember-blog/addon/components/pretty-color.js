@@ -1,8 +1,12 @@
-import Component from '@glimmer/component';
-import { htmlSafe } from '@ember/template';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
+import layout from '../templates/components/pretty-color';
 
-export default class extends Component {
-  get style() {
-    return htmlSafe(`color: ${this.args.name}`);
-  }
-}
+export default Component.extend({
+  layout,
+  attributeBindings: ['style'],
+
+  style: computed('name', function() {
+    return `color: ${this.name}`;
+  })
+});

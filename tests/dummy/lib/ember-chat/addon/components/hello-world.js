@@ -1,11 +1,19 @@
-import Component from '@glimmer/component';
-import { tracked } from '@glimmer/tracking';
-import { action } from '@ember/object';
+import Component from '@ember/component';
+import layout from '../templates/components/hello-world';
 
-export default class extends Component {
-  @tracked clickCount = 0;
+export default Component.extend({
+  layout: layout,
 
-  @action click() {
-    this.clickCount++;
-  }
-}
+  name: null,
+
+  init() {
+    this._super(...arguments);
+    this.set('clickCount', 0);
+  },
+
+  actions: {
+    click() {
+      this.incrementProperty('clickCount');
+    },
+  },
+});

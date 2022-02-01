@@ -14,7 +14,7 @@ const Eng = Engine.extend({
       services: ['data-store'],
       externalRoutes: ['home'],
     };
-  },
+  }
 });
 
 loadInitializers(Eng, modulePrefix);

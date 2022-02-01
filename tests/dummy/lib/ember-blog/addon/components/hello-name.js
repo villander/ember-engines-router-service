@@ -1,23 +1,21 @@
 import { later, cancel } from '@ember/runloop';
-import Component from '@glimmer/component';
-import { tracked } from '@glimmer/tracking';
+import Component from '@ember/component';
+import layout from '../templates/components/hello-name';
 
-export default class extends Component {
-  @tracked name = this.args.name;
-
-  constructor() {
-    super(...arguments);
-
+export default Component.extend({
+  layout: layout,
+  classNames: ['hello-name'],
+  init() {
+    this._super(...arguments);
     this._later = later(() => {
       if (this.isDestroyed || this.isDestroying) {
         return;
       }
-      this.name = 'Jerry';
+      this.set('name', 'Jerry');
     }, 50);
-  }
-
-  willDestroy() {
+  },
+  destroy() {
     cancel(this._later);
-    super.willDestroy(...arguments);
+    this._super(...arguments);
   }
-}
+});

@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "ember-cli-babel": "*",
-    "ember-cli-htmlbars": "*",
-    "ember-engines": "*"
+    "ember-cli-htmlbars": "*"
   }
 }

@@ -1,59 +1,39 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
-import { set, action } from '@ember/object';
-import { tracked } from '@glimmer/tracking';
+import { set, get } from '@ember/object';
 
-export default class extends Controller {
-  queryParams = ['lang'];
-  @service router;
+export default Controller.extend({
+  queryParams: ['lang'],
+  router: service(),
+  actions: {
+    transitionToHomeByService() {
+      get(this, 'router').transitionToExternal('home').then(() => {
+        set(this, 'transitionToExternal', true);
+      });
+    },
 
-  @tracked isActiveExternal = false;
-  @tracked replacedWithExternal = false;
-  @tracked transitionedToExternal = false;
-  @tracked transitionTo = false;
+    replaceWithHomeByService() {
+      get(this, 'router').replaceWithExternal('home').then(() => {
+        set(this, 'replaceWithExternal', true);
+      });
+    },
 
-  @action transitionToHomeByService() {
-    this.router.transitionToExternal('home').then(() => {
-      set(this, 'transitionToExternal', true);
-    });
-  }
+    copyPostURL() {
+      const url = get(this, 'router').urlForExternal('home');
+      set(this, 'urlForExternal', url);
+      // Clipboard now has "/"
+    },
 
-  @action replaceWithHomeByService() {
-    this.router.replaceWithExternal('home').then(() => {
-      set(this, 'replaceWithExternal', true);
-    });
-  }
+    checkActiveState() {
+      if (get(this, 'router').isActiveExternal('home')) {
+        set(this, 'isActiveExternal', true);
+      }
+    },
 
-  @action copyPostURL() {
-    this.urlForExternal = this.router.urlForExternal('home');
-    // Clipboard now has "/"
-  }
-
-  @action checkActiveState() {
-    if (this.router.isActiveExternal('home')) {
-      this.isActiveExternal = true;
+    transitionToUrlByService(url) {
+      get(this, 'router').transitionTo(url).then(() => {
+        set(this, 'transitionTo', true);
+      });
     }
   }
-
-  @action transitionToUrlByService(url) {
-    this.router.transitionTo(url).then(() => {
-      this.transitionTo = true;
-    });
-  }
-
-  @action goToChineseVersion() {
-    this.router.transitionTo({ queryParams: { lang: 'Chinese' } });
-  }
-
-  @action transitionToHome() {
-    this.router.transitionToExternal('home').then(() => {
-      this.transitionedToExternal = true;
-    });
-  }
-
-  @action replaceWithHome() {
-    this.router.replaceWithExternal('home').then(() => {
-      this.replacedWithExternal = true;
-    });
-  }
-}
+});

@@ -9,9 +9,8 @@
     "engineConfigPath": "ember-config"
   },
   "dependencies": {
-    "common-components": "link:../common-components",
-    "ember-cli-babel": "*",
     "ember-cli-htmlbars": "*",
-    "ember-engines": "*"
+    "ember-cli-babel": "*",
+    "common-components": "link:../common-components"
   }
 }
