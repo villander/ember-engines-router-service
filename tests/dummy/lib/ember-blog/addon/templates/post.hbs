@@ -1,44 +1,44 @@
-<h3 class="post-title">{{model.title}}</h3>
+<h3 class="post-title">{{this.model.title}}</h3>
 
-<p class="author">{{model.user.name}}</p>
+<p class="author">{{this.model.user.name}}</p>
 
-<p class="language">{{lang}}</p>
+<p class="language">{{this.lang}}</p>
 
 <p>
-  {{#link-to "post.comments" 1 class="routable-post-comments-link"}}Comments{{/link-to}}
-  {{#link-to "post.likes" 1 class="routable-post-likes-link"}}Likes{{/link-to}}
-  {{#link-to "post.diggs" 1 class="routable-post-diggs-link"}}Diggs{{/link-to}}
+  <LintTo @route="post.comments" @model="1" class="routable-post-comments-link">Comments</LintTo>
+  <LintTo @route="post.likes" @model="1" class="routable-post-likes-link">Likes</LintTo>
+  <LintTo @route="post.diggs" @model="1" class="routable-post-diggs-link">Diggs</LintTo>
 </p>
 
 {{outlet}}
 
-{{#link-to-external "home" class="routable-post-home-link"}}Go home{{/link-to-external}}
-{{#link-to "index" class="routable-post-blog-home-link"}}Go to blog home{{/link-to}}
-{{#link-to "application" class="routable-post-blog-home-link-app"}}Also goes to blog home{{/link-to}}
+  <LintToExternal @route="home" class="routable-post-home-link">Go home</LintToExternal>
+  <LintTo @route="index" class="routable-post-blog-home-link">Go to blog home</LintTo>
+  <LintTo @route="application" class="routable-post-blog-home-link-app">Also goes to blog home</LintTo>
 
-{{#link-to (query-params lang="Japanese") class="routable-post-jp-link"}}Go to Japanese version{{/link-to}}
-<button {{action "goToChineseVersion"}} class="routable-post-ch-link">Go to Chinese version</button>
-<button {{action "transitionToHome"}} class="routable-post-transition-to-home-button {{if transitionedToExternal 'transitioned-to-external'}}">
+<LinkTo @query={{hash lang="Japanese"}} class="routable-post-jp-link">Go to Japanese version</LinkTo>
+<button class="routable-post-ch-link" type="button" {{on "click" this.goToChineseVersion}}>Go to Chinese version</button>
+<button class="routable-post-transition-to-home-button {{if this.transitionedToExternal "transitioned-to-external"}}" type="button" {{on "click" this.transitionToHome}}>
     Go home programmatically
 </button>
 
-<button {{action "replaceWithHome"}} class="routable-post-replace-with-home-button {{if replacedWithExternal 'replaced-with-external'}}">
+<button class="routable-post-replace-with-home-button {{if this.replacedWithExternal "replaced-with-external"}}" type="button" {{on "click" this.replaceWithHome}}>
     Also goes home programmatically
 </button>
 
 {{!-- {{post-actions}} --}}
 
-<button {{action "transitionToHomeByService"}} class="routable-transition-external-button {{if transitionToExternal 'transitioned-to-external'}}">
+<button class="routable-transition-external-button {{if this.transitionToExternal "transitioned-to-external"}}" type="button" {{on "click" this.transitionToHomeByService}}>
     Go home (Engine Router Service)
 </button>
 
-<button {{action "replaceWithHomeByService"}} class="routable-replace-external-button {{if replaceWithExternal 'replaced-with-external'}}">
+<button class="routable-replace-external-button {{if this.replaceWithExternal "replaced-with-external"}}" type="button" {{on "click" this.replaceWithHomeByService}}>
     Go home progammatically (Engine Router Service)
 </button>
 
 
 
-<button {{action "copyPostURL"}} class="routable-url-for-external-button {{if urlForExternal 'url-for-external'}}">
+<button class="routable-url-for-external-button {{if this.urlForExternal "url-for-external"}}" type="button" {{on "click" this.copyPostURL}}>
     Copy URL by (Engine Router Service)
 </button>
 <div>
@@ -47,10 +47,10 @@
 
 
 
-<button {{action "checkActiveState"}} class="routable-is-active-external-button {{if isActiveExternal 'is-active-external'}}">
+<button class="routable-is-active-external-button {{if this.isActiveExternal "is-active-external"}}" type="button" {{on "click" this.checkActiveState}}>
     isActive in (Engine Router Service)
 </button>
 
-<button {{action "transitionToUrlByService" "/routable-engine-demo/blog/post/2?lang=Korean"}} class="routable-transition-to-url-button {{if transitionTo 'transitioned-to-url'}}">
+<button class="routable-transition-to-url-button {{if this.transitionTo "transitioned-to-url"}}" type="button" {{on "click" (fn this.transitionToUrlByService "/routable-engine-demo/blog/post/2?lang=Korean")}}>
   Go to direct URL (Engine Router Service)
 </button>

@@ -1,3 +1,9 @@
-<p class="language">{{lang}}</p>
+<p class="language">{{this.lang}}</p>
 
-{{#link-to "blog.post" 1 class="blog-post-no-qp"}}Go to Blog Post with no Query Params{{/link-to}}
+<LinkTo
+  class="blog-post-no-qp"
+  @route="blog.post"
+  @model="1"
+>
+  Go to Blog Post with no Query Params
+</LinkTo>

@@ -7,7 +7,7 @@ export default Route.extend({
   model() {
     // cause a service to be instantiated, so that our tests can
     // confirm that it gets cleaned up
-    this.get('exampleService');
+    this.exampleService;
 
     return {
       name: 'Derek Zoolander',
