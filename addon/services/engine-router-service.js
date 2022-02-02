@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-computed-properties-in-native-classes */
 import Service from '@ember/service';
 import { assert } from '@ember/debug';
 import { action, computed } from '@ember/object';
@@ -13,6 +14,7 @@ export default class EngineRouterService extends Service.extend(Evented) {
     super(...args);
 
     this._externalRoutes = getOwner(this)._externalRoutes;
+    // eslint-disable-next-line ember/no-assignment-of-untracked-properties-used-in-tracking-contexts
     this._mountPoint = getOwner(this).mountPoint;
     this.rootApplication = getRootOwner(this);
 
