@@ -2,15 +2,11 @@ import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 import { currentURL, visit, find, click } from '@ember/test-helpers';
 
-
 module('Acceptance | routeless engine demo', function (hooks) {
   setupApplicationTest(hooks);
 
-  module('Engine Router Service', function() {
-
-    test('transitionToExternal transitions to the parent application from within an engine and returns a thenable Transition object', async function (
-      assert
-    ) {
+  module('Engine Router Service', function () {
+    test('transitionToExternal transitions to the parent application from within an engine and returns a thenable Transition object', async function (assert) {
       assert.expect(2);
 
       await visit('/routable-engine-demo/ember-blog/post/1');
@@ -23,13 +19,13 @@ module('Acceptance | routeless engine demo', function (hooks) {
       await click('.trigger-transition-to');
 
       assert.ok(
-        find('.routable-transition-external-button').classList.contains('transitioned-to-external')
+        find('.routable-transition-external-button').classList.contains(
+          'transitioned-to-external'
+        )
       );
     });
 
-    test('replaceWithExternal transitions to the parent application from within an engine and returns a thenable Transition object', async function (
-      assert
-    ) {
+    test('replaceWithExternal transitions to the parent application from within an engine and returns a thenable Transition object', async function (assert) {
       assert.expect(2);
 
       await visit('/routable-engine-demo/ember-blog/post/1');
@@ -42,13 +38,13 @@ module('Acceptance | routeless engine demo', function (hooks) {
       await click('.trigger-transition-to');
 
       assert.ok(
-        find('.routable-replace-external-button').classList.contains('replaced-with-external')
+        find('.routable-replace-external-button').classList.contains(
+          'replaced-with-external'
+        )
       );
     });
 
-    test('urlForExternal Generate a URL based on the external route name', async function (
-      assert
-    ) {
+    test('urlForExternal Generate a URL based on the external route name', async function (assert) {
       assert.expect(2);
 
       await visit('/routable-engine-demo/ember-blog/post/1');
@@ -61,13 +57,13 @@ module('Acceptance | routeless engine demo', function (hooks) {
       await click('.trigger-transition-to');
 
       assert.ok(
-        find('.routable-url-for-external-button').classList.contains('url-for-external')
+        find('.routable-url-for-external-button').classList.contains(
+          'url-for-external'
+        )
       );
     });
 
-    test('isActiveExternal Determines whether a parent external route is active', async function (
-      assert
-    ) {
+    test('isActiveExternal Determines whether a parent external route is active', async function (assert) {
       assert.expect(2);
 
       await visit('/routable-engine-demo/ember-blog/post/1');
@@ -80,13 +76,13 @@ module('Acceptance | routeless engine demo', function (hooks) {
       await click('.trigger-transition-to');
 
       assert.ok(
-        find('.routable-is-active-external-button').classList.contains('is-active-external')
+        find('.routable-is-active-external-button').classList.contains(
+          'is-active-external'
+        )
       );
     });
 
-    test('transitionTo with url transitions to the parent application from within an engine and returns a thenable Transition object', async function (
-      assert
-    ) {
+    test('transitionTo with url transitions to the parent application from within an engine and returns a thenable Transition object', async function (assert) {
       assert.expect(2);
 
       await visit('/');
@@ -94,12 +90,16 @@ module('Acceptance | routeless engine demo', function (hooks) {
       await click('.blog-post-1-link-ch');
       await click('.routable-transition-to-url-button');
 
-      assert.equal(currentURL(), '/routable-engine-demo/blog/post/2?lang=Korean');
+      assert.equal(
+        currentURL(),
+        '/routable-engine-demo/blog/post/2?lang=Korean'
+      );
 
       assert.ok(
-        find('.routable-transition-to-url-button').classList.contains('transitioned-to-url')
+        find('.routable-transition-to-url-button').classList.contains(
+          'transitioned-to-url'
+        )
       );
     });
   });
-
 });

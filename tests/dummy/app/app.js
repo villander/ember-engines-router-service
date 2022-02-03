@@ -24,7 +24,7 @@ export default class App extends Application {
           services: ['store'],
         },
       },
-    }
+    };
   }
 }
 
