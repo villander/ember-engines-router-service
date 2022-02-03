@@ -4,6 +4,8 @@ import { Promise } from 'rsvp';
 
 export default class extends Route {
   model() {
-    return new Promise(resolve => later(resolve, 13 /* to try to happen after all auto-runs */));
+    return new Promise((resolve) =>
+      later(resolve, 13 /* to try to happen after all auto-runs */)
+    );
   }
 }

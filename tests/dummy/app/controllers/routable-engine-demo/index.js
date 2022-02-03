@@ -6,6 +6,8 @@ export default class extends Controller {
   @service router;
 
   @action goToPostWithChinese() {
-    this.router.transitionTo('blog.post', 1, { queryParams: { lang: 'Chinese' } });
+    this.router.transitionTo('blog.post', 1, {
+      queryParams: { lang: 'Chinese' },
+    });
   }
 }
