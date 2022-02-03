@@ -7,12 +7,10 @@ module('Acceptance | routeless engine demo', function (hooks) {
 
   module('Engine Router Service', function () {
     test('transitionToExternal transitions to the parent application from within an engine and returns a thenable Transition object', async function (assert) {
-      assert.expect(2);
-
       await visit('/routable-engine-demo/ember-blog/post/1');
       await click('.routable-transition-external-button');
 
-      assert.equal(currentURL(), '/');
+      assert.strictEqual(currentURL(), '/');
 
       await click('.routeable-engine');
       await click('.ember-blog-new');
@@ -26,12 +24,10 @@ module('Acceptance | routeless engine demo', function (hooks) {
     });
 
     test('replaceWithExternal transitions to the parent application from within an engine and returns a thenable Transition object', async function (assert) {
-      assert.expect(2);
-
       await visit('/routable-engine-demo/ember-blog/post/1');
       await click('.routable-replace-external-button');
 
-      assert.equal(currentURL(), '/');
+      assert.strictEqual(currentURL(), '/');
 
       await click('.routeable-engine');
       await click('.ember-blog-new');
@@ -45,12 +41,13 @@ module('Acceptance | routeless engine demo', function (hooks) {
     });
 
     test('urlForExternal Generate a URL based on the external route name', async function (assert) {
-      assert.expect(2);
-
       await visit('/routable-engine-demo/ember-blog/post/1');
       await click('.routable-url-for-external-button');
 
-      assert.equal(currentURL(), '/routable-engine-demo/ember-blog/post/1');
+      assert.strictEqual(
+        currentURL(),
+        '/routable-engine-demo/ember-blog/post/1'
+      );
 
       await click('.routeable-engine');
       await click('.ember-blog-new');
@@ -64,12 +61,13 @@ module('Acceptance | routeless engine demo', function (hooks) {
     });
 
     test('isActiveExternal Determines whether a parent external route is active', async function (assert) {
-      assert.expect(2);
-
       await visit('/routable-engine-demo/ember-blog/post/1');
       await click('.routable-is-active-external-button');
 
-      assert.equal(currentURL(), '/routable-engine-demo/ember-blog/post/1');
+      assert.strictEqual(
+        currentURL(),
+        '/routable-engine-demo/ember-blog/post/1'
+      );
 
       await click('.routeable-engine');
       await click('.ember-blog-new');
@@ -83,14 +81,12 @@ module('Acceptance | routeless engine demo', function (hooks) {
     });
 
     test('transitionTo with url transitions to the parent application from within an engine and returns a thenable Transition object', async function (assert) {
-      assert.expect(2);
-
       await visit('/');
       await click('.routeable-engine');
       await click('.blog-post-1-link-ch');
       await click('.routable-transition-to-url-button');
 
-      assert.equal(
+      assert.strictEqual(
         currentURL(),
         '/routable-engine-demo/blog/post/2?lang=Korean'
       );

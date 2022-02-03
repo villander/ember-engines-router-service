@@ -6,13 +6,13 @@ module('Unit | Utility | namespace-engine-route-name', function () {
     let mountPoint = 'blog';
     let routeName = 'application';
     let result = namespaceEngineRouteName(mountPoint, routeName);
-    assert.equal(result, 'blog');
+    assert.strictEqual(result, 'blog');
   });
 
   test('return engine namespace when routeName is different of `application`', function (assert) {
     let mountPoint = 'blog';
     let routeName = 'new';
     let result = namespaceEngineRouteName(mountPoint, routeName);
-    assert.equal(result, 'blog.new');
+    assert.strictEqual(result, 'blog.new');
   });
 });
