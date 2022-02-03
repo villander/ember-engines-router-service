@@ -2,15 +2,14 @@
 
 ## Installation
 
-* `git clone <repository-url>`
+* `git clone https://github.com/villander/ember-engines-router-service.git`
 * `cd ember-engines-router-service`
 * `yarn install`
 
 ## Linting
 
-* `yarn lint:hbs`
-* `yarn lint:js`
-* `yarn lint:js --fix`
+* `yarn lint`
+* `yarn lint:fix`
 
 ## Running tests
 

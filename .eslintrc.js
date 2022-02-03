@@ -19,30 +19,22 @@ module.exports = {
   env: {
     browser: true,
   },
-  rules: {
-    'ember/no-jquery': 'error',
-  },
+  rules: {},
   overrides: [
     // node files
     {
       files: [
-        '.eslintrc.js',
+        './.eslintrc.js',
         './.prettierrc.js',
-        '.template-lintrc.js',
-        'ember-cli-build.js',
-        'index.js',
-        'testem.js',
-        'blueprints/*/index.js',
-        'config/**/*.js',
-        'tests/dummy/config/**/*.js',
-      ],
-      excludedFiles: [
-        'addon/**',
-        'addon-test-support/**',
-        'app/**',
-        'tests/dummy/app/**',
-        'tests/dummy/lib/*/addon/**',
-        'tests/dummy/lib/*/app/**',
+        './.template-lintrc.js',
+        './ember-cli-build.js',
+        './index.js',
+        './testem.js',
+        './blueprints/*/index.js',
+        './config/**/*.js',
+        './tests/dummy/config/**/*.js',
+        './tests/dummy/lib/*/ember-cli-build.js',
+        './tests/dummy/lib/*/index.js',
       ],
       parserOptions: {
         sourceType: 'script',
@@ -52,13 +44,7 @@ module.exports = {
         node: true,
       },
       plugins: ['node'],
-      rules: Object.assign(
-        {},
-        require('eslint-plugin-node').configs.recommended.rules,
-        {
-          // add your custom rules and overrides for node files here
-        }
-      ),
+      extends: ['plugin:node/recommended'],
     },
     {
       // test files

@@ -24,7 +24,7 @@ jobs:
           node-version: 12.x
           cache: yarn
       - name: Install Dependencies
-        run: yarn install --frozen-lockfile
+        run: until yarn install --frozen-lockfile; do echo "Retrying yarn"; done
       - name: Lint
         run: yarn lint
       - name: Run Tests
@@ -56,11 +56,14 @@ jobs:
       fail-fast: false
       matrix:
         try-scenario:
-          - ember-lts-3.12
+#          - ember-lts-3.12
           - ember-lts-3.16
-          - ember-release
-          - ember-beta
-          - ember-canary
+          - ember-lts-3.20
+          - ember-lts-3.24
+          - ember-lts-3.28
+#          - ember-release
+#          - ember-beta
+#          - ember-canary
           - ember-default-with-jquery
           - ember-classic
 #          - embroider-safe
@@ -74,6 +77,6 @@ jobs:
           node-version: 12.x
           cache: yarn
       - name: Install Dependencies
-        run: yarn install --frozen-lockfile
+        run: until yarn install --frozen-lockfile; do echo "Retrying yarn"; done
       - name: Run Tests
         run: ./node_modules/.bin/ember try:one ${{ matrix.try-scenario }}
