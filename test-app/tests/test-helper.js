@@ -1,6 +1,6 @@
-import Application from 'dummy/app';
-import config from 'dummy/config/environment';
-import manifest from 'dummy/config/asset-manifest';
+import Application from 'test-app/app';
+import config from 'test-app/config/environment';
+import manifest from 'test-app/config/asset-manifest';
 import * as QUnit from 'qunit';
 import { setApplication } from '@ember/test-helpers';
 import { setup } from 'qunit-dom';

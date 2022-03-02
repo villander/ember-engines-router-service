@@ -32,9 +32,6 @@ module.exports = {
         './testem.js',
         './blueprints/*/index.js',
         './config/**/*.js',
-        './tests/dummy/config/**/*.js',
-        './tests/dummy/lib/*/ember-cli-build.js',
-        './tests/dummy/lib/*/index.js',
       ],
       parserOptions: {
         sourceType: 'script',
