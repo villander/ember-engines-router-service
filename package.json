@@ -1,7 +1,15 @@
 {
-    "private": true,
-    "workspaces": [
-      "addon",
-      "test-app"
-    ]
+  "private": true,
+  "version": "0.3.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/villander/ember-engines-router-service"
+  },
+  "workspaces": [
+    "addon",
+    "test-app"
+  ],
+  "scripts": {
+    "prepare": "cd addon && yarn build"
+  }
 }

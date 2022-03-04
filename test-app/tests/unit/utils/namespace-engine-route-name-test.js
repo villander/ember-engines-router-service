@@ -1,4 +1,4 @@
-import { namespaceEngineRouteName } from '../../../utils/namespace-engine-route-name';
+import { namespaceEngineRouteName } from 'ember-engines-router-service/utils/namespace-engine-route-name';
 import { module, test } from 'qunit';
 
 module('Unit | Utility | namespace-engine-route-name', function () {
