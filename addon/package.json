@@ -18,7 +18,19 @@
     "doc": "doc",
     "test": "tests"
   },
+  "exports": {
+    ".": "./dist/addon-main.js",
+    "./*": "./dist/*",
+    "./addon-main.js": "./addon-main.js"
+  },
+  "files": [
+    "addon-main.js",
+    "dist"
+  ],
   "scripts": {
+    "build": "rollup --config",
+    "prepublishOnly": "rollup --config",
+    "start": "rollup --config --watch",
     "lint": "npm-run-all --aggregate-output --continue-on-error --parallel \"lint:!(fix)\"",
     "lint:fix": "npm-run-all --aggregate-output --continue-on-error --parallel lint:*:fix",
     "lint:hbs": "ember-template-lint .",
@@ -27,11 +39,15 @@
     "lint:js:fix": "eslint . --fix"
   },
   "dependencies": {
-    "ember-cli-babel": "^7.26.10"
+    "@embroider/addon-shim": "^1.2.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.17.5",
+    "@babel/plugin-proposal-class-properties": "^7.16.7",
+    "@babel/plugin-proposal-decorators": "^7.17.2",
+    "@embroider/addon-dev": "^1.2.0",
+    "@rollup/plugin-babel": "^5.3.1",
     "babel-eslint": "^10.1.0",
-    "ember-cli-babel": "^7.26.10",
     "ember-template-lint": "^3.15.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
@@ -40,7 +56,8 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-qunit": "^7.2.0",
     "npm-run-all": "^4.1.5",
-    "prettier": "^2.5.1"
+    "prettier": "^2.5.1",
+    "rollup": "^2.68.0"
   },
   "engines": {
     "node": "12.* || 14.* || >= 16"
@@ -57,5 +74,14 @@
   },
   "ember": {
     "edition": "octane"
+  },
+  "ember-addon": {
+    "main": "addon-main.js",
+    "type": "addon",
+    "version": 2,
+    "app-js": {
+      "./initializers/ember-engines-router-service.js": "./dist/_app_/initializers/ember-engines-router-service.js",
+      "./services/engine-router-service.js": "./dist/_app_/services/engine-router-service.js"
+    }
   }
 }
