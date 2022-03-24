@@ -1,0 +1,13 @@
+/.env*
+/.eslintcache
+/.eslintignore
+/.eslintrc.js
+/.git/
+/.gitignore
+/.prettierignore
+/.prettierrc.js
+/.template-lintrc.js
+/rollup.config.js
+/yarn-error.log
+/yarn.lock
+.gitkeep
