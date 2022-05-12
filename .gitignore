@@ -1,3 +1,11 @@
-node_modules
+# dependencies
+node_modules/
+
+# *.md copies from release
+/addon/README.md
+/addon/LICENSE.md
+
+# misc
+npm-debug.log*
 yarn-error.log
 .DS_Store
