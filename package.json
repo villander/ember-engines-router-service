@@ -53,5 +53,9 @@
       "tokenRef": "GITHUB_AUTH"
     },
     "npm": false
+  },
+  "volta": {
+    "node": "14.19.2",
+    "yarn": "1.22.18"
   }
 }

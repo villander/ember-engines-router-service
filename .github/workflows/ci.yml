@@ -19,9 +19,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install Node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: 12.x
+          node-version: 14.x
           cache: yarn
       - name: Install Dependencies
         run: until yarn install --frozen-lockfile; do echo "Retrying yarn"; done
@@ -41,9 +41,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
-          node-version: 12.x
+          node-version: 14.x
           cache: yarn
       - name: Install Dependencies
         # Absurdly, yarn always fails on the first try here.
@@ -78,9 +78,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install Node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: 12.x
+          node-version: 14.x
           cache: yarn
       - name: Install Dependencies
         run: until yarn install --frozen-lockfile; do echo "Retrying yarn"; done
