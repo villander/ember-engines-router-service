@@ -1,56 +1,58 @@
-import Service from '@ember/service';
-import { assert } from '@ember/debug';
-import { action, computed, get } from '@ember/object';
-import { reads } from '@ember/object/computed';
-import { getOwner } from '@ember/application';
-import Evented from '@ember/object/evented';
-import { namespaceEngineRouteName } from '../utils/namespace-engine-route-name';
-import { getRootOwner } from '../utils/root-owner';
-import { resemblesURL } from '../utils/resembles-url';
+import { set, action, computed, get } from "@ember/object";
+import Service from "@ember/service";
+import { assert } from "@ember/debug";
+import { reads } from "@ember/object/computed";
+import { getOwner } from "@ember/application";
+import Evented from "@ember/object/evented";
+import { namespaceEngineRouteName } from "../utils/namespace-engine-route-name";
+import { getRootOwner } from "../utils/root-owner";
+import { resemblesURL } from "../utils/resembles-url";
 
 export default class EngineRouterService extends Service.extend(Evented) {
   init() {
     super.init();
 
     this._externalRoutes = getOwner(this)._externalRoutes;
-    this._mountPoint = getOwner(this).mountPoint;
+    set(this, "_mountPoint", getOwner(this).mountPoint);
     this.rootApplication = getRootOwner(this);
 
-    this.externalRouter.on('routeWillChange', this.onRouteWillChange);
-    this.externalRouter.on('routeDidChange', this.onRouteDidChange);
+    this.externalRouter.on("routeWillChange", this.onRouteWillChange);
+    this.externalRouter.on("routeDidChange", this.onRouteDidChange);
   }
 
   destroy() {
-    this.externalRouter.off('routeWillChange', this.onRouteWillChange);
-    this.externalRouter.off('routeDidChange', this.onRouteDidChange);
+    this.externalRouter.off("routeWillChange", this.onRouteWillChange);
+    this.externalRouter.off("routeDidChange", this.onRouteDidChange);
 
     super.destroy();
   }
 
   @action
   onRouteWillChange(...args) {
-    this.trigger('routeWillChange', ...args);
+    this.trigger("routeWillChange", ...args);
   }
 
   @action
   onRouteDidChange(...args) {
-    this.trigger('routeDidChange', ...args);
+    this.trigger("routeDidChange", ...args);
   }
 
-  @reads('externalRouter.rootURL') rootURL;
+  @reads("externalRouter.rootURL") rootURL;
 
-  @reads('externalRouter.currentURL') currentURL;
+  @reads("externalRouter.currentURL") currentURL;
 
-  @computed('externalRouter.currentRouteName')
+  @computed("_mountPoint.length", "externalRouter.currentRouteName")
   get currentRouteName() {
-    if (get(this, 'externalRouter').currentRouteName === this._mountPoint) {
-      return 'application';
+    if (get(this, "externalRouter").currentRouteName === this._mountPoint) {
+      return "application";
     }
-    return get(this, 'externalRouter').currentRouteName.slice(this._mountPoint.length + 1);
+    return get(this, "externalRouter").currentRouteName.slice(
+      this._mountPoint.length + 1
+    );
   }
 
   get externalRouter() {
-    return this.rootApplication.lookup('service:router');
+    return this.rootApplication.lookup("service:router");
   }
 
   getExternalRouteName(externalRouteName) {
@@ -62,66 +64,90 @@ export default class EngineRouterService extends Service.extend(Evented) {
   }
 
   transitionTo(routeName, ...args) {
+    const externalRouter = get(this, "externalRouter");
+
     if (resemblesURL(routeName)) {
-      return get(this, 'externalRouter').transitionTo(routeName);
+      return externalRouter.transitionTo(routeName);
     }
 
-    return get(this, 'externalRouter').transitionTo(
-      namespaceEngineRouteName(this._mountPoint, routeName),
-      ...args
-    );
+    if (typeof routeName === "string") {
+      return externalRouter.transitionTo(
+        namespaceEngineRouteName(this._mountPoint, routeName),
+        ...args
+      );
+    }
+
+    // Handle queryParams-only transitions
+    return externalRouter.transitionTo(...arguments);
   }
 
   transitionToExternal(routeName, ...args) {
-    return get(this, 'externalRouter').transitionTo(
-      this.getExternalRouteName(routeName),
-      ...args
-    );
+    const externalRouter = get(this, "externalRouter");
+
+    if (typeof routeName === "string") {
+      return externalRouter.transitionTo(
+        this.getExternalRouteName(routeName),
+        ...args
+      );
+    }
+    // Handle queryParams-only transitions
+    return externalRouter.transitionTo(...arguments);
   }
 
   replaceWith(routeName, ...args) {
     if (resemblesURL(routeName)) {
-      return get(this, 'externalRouter').replaceWith(routeName);
+      return get(this, "externalRouter").replaceWith(routeName);
     }
 
-    return get(this, 'externalRouter').replaceWith(
+    return get(this, "externalRouter").replaceWith(
       namespaceEngineRouteName(this._mountPoint, routeName),
       ...args
     );
   }
 
   replaceWithExternal(routeName, ...args) {
-    return get(this, 'externalRouter').replaceWith(
+    return get(this, "externalRouter").replaceWith(
       this.getExternalRouteName(routeName),
       ...args
     );
   }
 
   urlFor(routeName, ...args) {
-    return get(this, 'externalRouter').urlFor(
+    return get(this, "externalRouter").urlFor(
       namespaceEngineRouteName(this._mountPoint, routeName),
       ...args
     );
   }
 
   urlForExternal(routeName, ...args) {
-    return get(this, 'externalRouter').urlFor(
+    return get(this, "externalRouter").urlFor(
       this.getExternalRouteName(routeName),
       ...args
     );
   }
 
+  @action
   isActive(routeName, ...args) {
-    return get(this, 'externalRouter').isActive(
+    return get(this, "externalRouter").isActive(
       namespaceEngineRouteName(this._mountPoint, routeName),
       ...args
     );
   }
 
+  @action
   isActiveExternal(routeName, ...args) {
-    return get(this, 'externalRouter').isActive(
+    return get(this, "externalRouter").isActive(
       this.getExternalRouteName(routeName),
       ...args
     );
+  }
+
+  refresh() {
+    const { refresh } = get(this, "externalRouter");
+    assert(
+      "refresh is not implemented on the router service, see https://github.com/Windvis/ember-router-service-refresh-polyfill",
+      refresh
+    );
+    refresh(...arguments);
   }
 }
