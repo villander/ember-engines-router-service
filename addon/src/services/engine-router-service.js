@@ -66,8 +66,6 @@ export default class EngineRouterService extends Service.extend(Evented) {
   }
 
   transitionTo(routeName, ...args) {
-    const externalRouter = get(this, 'externalRouter');
-
     if (resemblesURL(routeName)) {
       return this.externalRouter.transitionTo(routeName);
     }
