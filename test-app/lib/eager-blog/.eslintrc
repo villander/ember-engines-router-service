@@ -1,0 +1,17 @@
+{
+  "parserOptions": {
+    "sourceType": "script"
+  },
+  "env": {
+    "node": true,
+    "browser": false,
+  },
+  "rules": {
+    "ember/no-jquery": "error"
+  },
+  "settings": {
+    "node": {
+      "allowModules": ["ember-engines"]
+    }
+  }
+}

@@ -1,0 +1,18 @@
+import { namespaceEngineRouteName } from 'ember-engines-router-service/utils/namespace-engine-route-name';
+import { module, test } from 'qunit';
+
+module('Unit | Utility | namespace-engine-route-name', function () {
+  test('return mountPoint when routeName is `application`', function (assert) {
+    let mountPoint = 'blog';
+    let routeName = 'application';
+    let result = namespaceEngineRouteName(mountPoint, routeName);
+    assert.strictEqual(result, 'blog');
+  });
+
+  test('return engine namespace when routeName is different of `application`', function (assert) {
+    let mountPoint = 'blog';
+    let routeName = 'new';
+    let result = namespaceEngineRouteName(mountPoint, routeName);
+    assert.strictEqual(result, 'blog.new');
+  });
+});

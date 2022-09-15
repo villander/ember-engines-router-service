@@ -1,0 +1,21 @@
+<ul>
+  <li>
+    <LinkTo
+      class="blog-post-1-link-jp"
+      @route="blog.post"
+      @model="1"
+      @query={{hash lang="Japanese"}}
+    >
+      Go to post #1 with Japanese as language
+    </LinkTo>
+  </li>
+  <li>
+    <button
+      class="blog-post-1-link-ch"
+      type="button"
+      {{on "click" this.goToPostWithChinese}}
+    >
+      Go to post #1 with Chinese as language programmatically
+    </button>
+  </li>
+</ul>
