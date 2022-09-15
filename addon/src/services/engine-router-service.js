@@ -18,8 +18,8 @@ export default class EngineRouterService extends Service.extend(Evented) {
     this._mountPoint = getOwner(this).mountPoint;
     this.rootApplication = getRootOwner(this);
 
-    this.externalRouter.on("routeWillChange", this.onRouteWillChange);
-    this.externalRouter.on("routeDidChange", this.onRouteDidChange);
+    this.externalRouter.on('routeWillChange', this.onRouteWillChange);
+    this.externalRouter.on('routeDidChange', this.onRouteDidChange);
   }
 
   willDestroy() {
@@ -31,17 +31,17 @@ export default class EngineRouterService extends Service.extend(Evented) {
 
   @action
   onRouteWillChange(...args) {
-    this.trigger("routeWillChange", ...args);
+    this.trigger('routeWillChange', ...args);
   }
 
   @action
   onRouteDidChange(...args) {
-    this.trigger("routeDidChange", ...args);
+    this.trigger('routeDidChange', ...args);
   }
 
-  @reads("externalRouter.rootURL") rootURL;
+  @reads('externalRouter.rootURL') rootURL;
 
-  @reads("externalRouter.currentURL") currentURL;
+  @reads('externalRouter.currentURL') currentURL;
 
   @computed('_mountPoint.length', 'externalRouter.currentRouteName')
   get currentRouteName() {
@@ -54,7 +54,7 @@ export default class EngineRouterService extends Service.extend(Evented) {
   }
 
   get externalRouter() {
-    return this.rootApplication.lookup("service:router");
+    return this.rootApplication.lookup('service:router');
   }
 
   getExternalRouteName(externalRouteName) {
@@ -66,7 +66,7 @@ export default class EngineRouterService extends Service.extend(Evented) {
   }
 
   transitionTo(routeName, ...args) {
-    const externalRouter = get(this, "externalRouter");
+    const externalRouter = get(this, 'externalRouter');
 
     if (resemblesURL(routeName)) {
       return this.externalRouter.transitionTo(routeName);
