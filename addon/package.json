@@ -18,7 +18,8 @@
   },
   "files": [
     "addon-main.js",
-    "dist"
+    "dist",
+    "types"
   ],
   "scripts": {
     "build": "rollup --config",
@@ -36,6 +37,7 @@
     "@babel/plugin-proposal-decorators": "^7.17.8",
     "@embroider/addon-dev": "^1.2.0",
     "@rollup/plugin-babel": "^5.3.1",
+    "@types/ember__routing": "^4.0.10",
     "eslint": "^8.11.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-ember": "^10.5.9",
@@ -73,6 +75,13 @@
     "app-js": {
       "./initializers/ember-engines-router-service.js": "./dist/_app_/initializers/ember-engines-router-service.js",
       "./services/engine-router-service.js": "./dist/_app_/services/engine-router-service.js"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "types/*"
+      ]
     }
   }
 }

@@ -60,6 +60,28 @@ export default class SomeComponent extends Component {
 For further documentation on this subject, view the [Engine Linking RFC](https://github.com/emberjs/rfcs/pull/122).
 
 
+## TypeScript
+------------------------------------------------------------------------------
+
+The library ships types for TypeScript usage:
+
+```ts
+import Service, { inject as service } from '@ember/service';
+import type EnginesRouterService from 'ember-engines-router-service/services/router';
+
+type Transition = ReturnType<EnginesRouterService['transitionTo']> & { sequence: number };
+
+export default class MyService extends Service {
+  @service declare router: EnginesRouterService;
+
+  doSomeTranstion (): void {
+    const transition = this.router.transitionToExternal('someRouter');
+    transition.data.someKey = 'someValue';
+  }
+}
+```
+
+
 ## Contributing
 ------------------------------------------------------------------------------
 
