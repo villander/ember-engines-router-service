@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "test-app",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Provides the Router service for ember-engines.",
   "keywords": [],
   "repository": {
@@ -52,7 +52,7 @@
     "ember-cli-terser": "^4.0.2",
     "ember-disable-prototype-extensions": "^1.1.3",
     "ember-engines": "^0.8.5",
-    "ember-engines-router-service": "0.4.0",
+    "ember-engines-router-service": "0.4.1",
     "ember-export-application-global": "^2.0.1",
     "ember-load-initializers": "^2.1.2",
     "ember-maybe-import-regenerator": "^0.1.6",

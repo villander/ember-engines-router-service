@@ -2,6 +2,15 @@
 
 
 
+
+## v0.4.1 (2022-11-12)
+
+#### :memo: Documentation
+* [#72](https://github.com/villander/ember-engines-router-service/pull/72) Add type definitions ([@SergeAstapov](https://github.com/SergeAstapov))
+
+#### Committers: 1
+- Sergey Astapov ([@SergeAstapov](https://github.com/SergeAstapov))
+
 ## v0.4.0 (2022-05-13)
 
 #### :boom: Breaking Change
