@@ -30,7 +30,7 @@ jobs:
 
       - name: Lint Addon
         run: yarn lint
-        working-directory: addon
+        working-directory: ember-engines-router-service
 
       - name: Lint Test App
         run: yarn lint
