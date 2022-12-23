@@ -7,25 +7,22 @@ export default class App extends Application {
   modulePrefix = config.modulePrefix;
   podModulePrefix = config.podModulePrefix;
   Resolver = Resolver;
-  constructor() {
-    super(...arguments);
 
-    this.engines = {
-      emberBlog: {
-        dependencies: {
-          services: [{ 'data-store': 'store' }],
-          externalRoutes: {
-            home: 'application',
-          },
+  engines = {
+    'ember-blog': {
+      dependencies: {
+        services: [{ 'data-store': 'store' }],
+        externalRoutes: {
+          home: 'application',
         },
       },
-      emberChat: {
-        dependencies: {
-          services: ['store'],
-        },
+    },
+    'ember-chat': {
+      dependencies: {
+        services: ['store'],
       },
-    };
-  }
+    },
+  };
 }
 
 loadInitializers(App, config.modulePrefix);

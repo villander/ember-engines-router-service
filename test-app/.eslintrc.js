@@ -32,13 +32,11 @@ module.exports = {
         './.prettierrc.js',
         './.template-lintrc.js',
         './ember-cli-build.js',
-        './index.js',
         './testem.js',
         './blueprints/*/index.js',
         './config/**/*.js',
-        './test-app/config/**/*.js',
-        './test-app/lib/*/ember-cli-build.js',
-        './test-app/lib/*/index.js',
+        './lib/*/index.js',
+        './server/**/*.js',
       ],
       parserOptions: {
         sourceType: 'script',
@@ -49,6 +47,11 @@ module.exports = {
       },
       plugins: ['node'],
       extends: ['plugin:node/recommended'],
+      rules: {
+        // this can be removed once the following is fixed
+        // https://github.com/mysticatea/eslint-plugin-node/issues/77
+        'node/no-unpublished-require': 'off',
+      },
     },
     {
       // test files

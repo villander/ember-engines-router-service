@@ -16,6 +16,13 @@
     "./*": "./dist/*",
     "./addon-main.js": "./addon-main.js"
   },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "types/*"
+      ]
+    }
+  },
   "files": [
     "addon-main.js",
     "dist",
@@ -23,10 +30,10 @@
   ],
   "scripts": {
     "build": "rollup --config",
-    "prepublishOnly": "rollup --config",
-    "start": "rollup --config --watch",
     "lint": "eslint . --cache",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "prepublishOnly": "rollup --config",
+    "start": "rollup --config --watch"
   },
   "dependencies": {
     "@embroider/addon-shim": "^1.2.0"
@@ -77,11 +84,7 @@
       "./services/engine-router-service.js": "./dist/_app_/services/engine-router-service.js"
     }
   },
-  "typesVersions": {
-    "*": {
-      "*": [
-        "types/*"
-      ]
-    }
+  "volta": {
+    "extends": "../package.json"
   }
 }
