@@ -6,6 +6,7 @@
     "ember-engine"
   ],
   "dependencies": {
+    "@ember/legacy-built-in-components": "^0.4.1",
     "common-components": "link:../common-components",
     "ember-cli-babel": "*",
     "ember-cli-htmlbars": "*"

@@ -9,6 +9,7 @@
     "engineConfigPath": "ember-config"
   },
   "dependencies": {
+    "@ember/legacy-built-in-components": "^0.4.1",
     "ember-cli-babel": "*",
     "ember-cli-htmlbars": "*"
   }
