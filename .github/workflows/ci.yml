@@ -15,22 +15,27 @@ jobs:
   test:
     name: "Tests"
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Install Node
         uses: actions/setup-node@v3
         with:
           node-version: 14.x
           cache: yarn
+
       - name: Install Dependencies
         run: until yarn install --frozen-lockfile; do echo "Retrying yarn"; done
+
       - name: Lint Addon
         run: yarn lint
-        working-directory: addon
+        working-directory: ember-engines-router-service
+
       - name: Lint Test App
         run: yarn lint
         working-directory: test-app
+
       - name: Run Tests
         run: yarn test:ember
         working-directory: test-app
@@ -40,15 +45,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 14.x
           cache: yarn
+
       - name: Install Dependencies
         # Absurdly, yarn always fails on the first try here.
         # https://github.com/yarnpkg/yarn/issues/2629
         run: until yarn install --no-lockfile; do echo "Retrying yarn"; done
+
       - name: Run Tests
         run: yarn test:ember
         working-directory: test-app
@@ -62,28 +69,29 @@ jobs:
       fail-fast: false
       matrix:
         try-scenario:
-#          - ember-lts-3.12
-          - ember-lts-3.16
-          - ember-lts-3.20
           - ember-lts-3.24
           - ember-lts-3.28
-#          - ember-release
-#          - ember-beta
-#          - ember-canary
+          - ember-lts-4.4
+          - ember-lts-4.8
+          - ember-release
+          - ember-beta
+          - ember-canary
           - ember-default-with-jquery
           - ember-classic
 #          - embroider-safe
 #          - embroider-optimized
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Install Node
         uses: actions/setup-node@v3
         with:
           node-version: 14.x
           cache: yarn
+
       - name: Install Dependencies
         run: until yarn install --frozen-lockfile; do echo "Retrying yarn"; done
+
       - name: Run Tests
         run: ./node_modules/.bin/ember try:one ${{ matrix.try-scenario }}
         working-directory: test-app
