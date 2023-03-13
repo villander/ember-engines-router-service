@@ -1,3 +1,30 @@
-<div class="hello-name" ...attributes>
-  Hello, {{@name}}!
+<div class='hello-name' ...attributes>
+  <span class='greeting'>
+    Hello,
+    {{@name}}!
+  </span>
+
+  <button
+    class='refresh'
+    type='button'
+    {{on 'click' this.refresh}}
+  >
+    Refresh
+  </button>
+
+  <button
+    class='refresh-route'
+    type='button'
+    {{on 'click' this.refreshRoute}}
+  >
+    Refresh Route
+  </button>
+
+  <button
+    class='refresh-external'
+    type='button'
+    {{on 'click' this.refreshExternal}}
+  >
+    Refresh External
+  </button>
 </div>
