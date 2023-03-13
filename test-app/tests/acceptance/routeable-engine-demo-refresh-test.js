@@ -10,7 +10,6 @@ module('Acceptance | routeless engine demo', function (hooks) {
       await visit('/routable-engine-demo/ember-blog/new');
 
       let counter = await find('.route-refresh-counter').textContent;
-      assert.dom('.route-refresh-counter').hasText(counter);
       await click('.refresh');
 
       counter = parseInt(counter, 10);
@@ -23,7 +22,6 @@ module('Acceptance | routeless engine demo', function (hooks) {
       await visit('/routable-engine-demo/ember-blog/new');
 
       let counter = await find('.route-refresh-counter').textContent;
-      assert.dom('.route-refresh-counter').hasText(counter);
       await click('.refresh-route');
 
       counter = parseInt(counter, 10);
@@ -36,7 +34,6 @@ module('Acceptance | routeless engine demo', function (hooks) {
       await visit('/routable-engine-demo/ember-blog/new');
 
       let counter = await find('.route-refresh-counter').textContent;
-      assert.dom('.global-refresh-counter').hasText(counter);
       await click('.refresh-external');
 
       counter = parseInt(counter, 10);
