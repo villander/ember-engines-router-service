@@ -65,6 +65,24 @@ export default class EngineRouterService extends Service.extend(Evented) {
     return this._externalRoutes[externalRouteName];
   }
 
+  refresh(routeName = this.currentRouteName, ...args) {
+    if (resemblesURL(routeName)) {
+      return this.externalRouter.refresh(routeName);
+    }
+
+    return this.externalRouter.refresh(
+      namespaceEngineRouteName(this._mountPoint, routeName),
+      ...args
+    );
+  }
+
+  refreshExternal(routeName, ...args) {
+    return this.externalRouter.refresh(
+      this.getExternalRouteName(routeName),
+      ...args
+    );
+  }
+
   transitionTo(routeName, ...args) {
     if (resemblesURL(routeName)) {
       return this.externalRouter.transitionTo(routeName);
