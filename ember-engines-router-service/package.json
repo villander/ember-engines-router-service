@@ -85,8 +85,5 @@
       "./initializers/ember-engines-router-service.js": "./dist/_app_/initializers/ember-engines-router-service.js",
       "./services/engine-router-service.js": "./dist/_app_/services/engine-router-service.js"
     }
-  },
-  "volta": {
-    "extends": "../package.json"
   }
 }
