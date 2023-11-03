@@ -10,6 +10,9 @@ import { namespaceEngineRouteName } from '../utils/namespace-engine-route-name';
 import { getRootOwner } from '../utils/root-owner';
 import { resemblesURL } from '../utils/resembles-url';
 
+const warningMessage =
+  'Refresh method is not available in ember-source below v4.1';
+
 export default class EngineRouterService extends Service.extend(Evented) {
   constructor(...args) {
     super(...args);
@@ -77,7 +80,7 @@ export default class EngineRouterService extends Service.extend(Evented) {
         ...args
       );
     } else {
-      assert('Refresh method is not available in ember-source below v4.1');
+      assert(warningMessage);
     }
   }
 
@@ -88,7 +91,7 @@ export default class EngineRouterService extends Service.extend(Evented) {
         ...args
       );
     } else {
-      assert('Refresh method is not available in ember-source below v4.1');
+      assert(warningMessage);
     }
   }
 
