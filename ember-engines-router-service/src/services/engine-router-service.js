@@ -5,6 +5,7 @@ import { action, computed } from '@ember/object';
 import { reads } from '@ember/object/computed';
 import { getOwner } from '@ember/application';
 import Evented from '@ember/object/evented';
+import { macroCondition, dependencySatisfies } from '@embroider/macros';
 import { namespaceEngineRouteName } from '../utils/namespace-engine-route-name';
 import { getRootOwner } from '../utils/root-owner';
 import { resemblesURL } from '../utils/resembles-url';
@@ -66,21 +67,29 @@ export default class EngineRouterService extends Service.extend(Evented) {
   }
 
   refresh(routeName = this.currentRouteName, ...args) {
-    if (resemblesURL(routeName)) {
-      return this.externalRouter.refresh(routeName);
-    }
+    if (macroCondition(dependencySatisfies('ember-source', '>= 4.1.0'))) {
+      if (resemblesURL(routeName)) {
+        return this.externalRouter.refresh(routeName);
+      }
 
-    return this.externalRouter.refresh(
-      namespaceEngineRouteName(this._mountPoint, routeName),
-      ...args
-    );
+      return this.externalRouter.refresh(
+        namespaceEngineRouteName(this._mountPoint, routeName),
+        ...args
+      );
+    } else {
+      assert('Refresh method is not available in ember-source below v4.1');
+    }
   }
 
   refreshExternal(routeName, ...args) {
-    return this.externalRouter.refresh(
-      this.getExternalRouteName(routeName),
-      ...args
-    );
+    if (macroCondition(dependencySatisfies('ember-source', '>= 4.1.0'))) {
+      return this.externalRouter.refresh(
+        this.getExternalRouteName(routeName),
+        ...args
+      );
+    } else {
+      assert('Refresh method is not available in ember-source below v4.1');
+    }
   }
 
   transitionTo(routeName, ...args) {
