@@ -3,6 +3,21 @@
 
 
 
+
+## v0.5.0 (2023-11-15)
+
+#### :rocket: Enhancement
+* [#86](https://github.com/villander/ember-engines-router-service/pull/86) fix: add guard for unsupported versions ([@aklkv](https://github.com/aklkv))
+* [#84](https://github.com/villander/ember-engines-router-service/pull/84) feat: add refresh method ([@aklkv](https://github.com/aklkv))
+
+#### :house: Internal
+* [#88](https://github.com/villander/ember-engines-router-service/pull/88) chore: Add `asdf` config file ([@villander](https://github.com/villander))
+
+#### Committers: 3
+- Alexey Kulakov ([@aklkv](https://github.com/aklkv))
+- Michael Villander ([@villander](https://github.com/villander))
+- Sergey Astapov ([@SergeAstapov](https://github.com/SergeAstapov))
+
 ## v0.4.1 (2022-11-12)
 
 #### :memo: Documentation
