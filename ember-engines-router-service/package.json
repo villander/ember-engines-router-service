@@ -36,7 +36,8 @@
     "start": "rollup --config --watch"
   },
   "dependencies": {
-    "@embroider/addon-shim": "^1.8.4"
+    "@embroider/addon-shim": "^1.8.4",
+    "@embroider/macros": "^1.13.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.7",
@@ -55,8 +56,11 @@
     "prettier": "^2.8.1",
     "rollup": "^3.8.1"
   },
+  "peerDependencies": {
+    "ember-source": "^3.28.0 || ^4.0.0"
+  },
   "engines": {
-    "node": "14.* || 16.* || >= 18"
+    "node": "16.* || 18.* || >= 20"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
@@ -85,8 +89,5 @@
       "./initializers/ember-engines-router-service.js": "./dist/_app_/initializers/ember-engines-router-service.js",
       "./services/engine-router-service.js": "./dist/_app_/services/engine-router-service.js"
     }
-  },
-  "volta": {
-    "extends": "../package.json"
   }
 }
