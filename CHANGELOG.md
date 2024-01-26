@@ -4,6 +4,15 @@
 
 
 
+
+## v0.5.1 (2024-01-26)
+
+#### :rocket: Enhancement
+* [#90](https://github.com/villander/ember-engines-router-service/pull/90) Allow Ember.js v5 in peerDependencies ([@SergeAstapov](https://github.com/SergeAstapov))
+
+#### Committers: 1
+- Sergey Astapov ([@SergeAstapov](https://github.com/SergeAstapov))
+
 ## v0.5.0 (2023-11-15)
 
 #### :rocket: Enhancement
