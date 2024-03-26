@@ -18,8 +18,8 @@ module('Acceptance | routeless engine demo', function (hooks) {
 
       assert.ok(
         find('.routable-transition-external-button').classList.contains(
-          'transitioned-to-external'
-        )
+          'transitioned-to-external',
+        ),
       );
     });
 
@@ -35,8 +35,8 @@ module('Acceptance | routeless engine demo', function (hooks) {
 
       assert.ok(
         find('.routable-replace-external-button').classList.contains(
-          'replaced-with-external'
-        )
+          'replaced-with-external',
+        ),
       );
     });
 
@@ -46,7 +46,7 @@ module('Acceptance | routeless engine demo', function (hooks) {
 
       assert.strictEqual(
         currentURL(),
-        '/routable-engine-demo/ember-blog/post/1'
+        '/routable-engine-demo/ember-blog/post/1',
       );
 
       await click('.routeable-engine');
@@ -55,8 +55,8 @@ module('Acceptance | routeless engine demo', function (hooks) {
 
       assert.ok(
         find('.routable-url-for-external-button').classList.contains(
-          'url-for-external'
-        )
+          'url-for-external',
+        ),
       );
     });
 
@@ -66,7 +66,7 @@ module('Acceptance | routeless engine demo', function (hooks) {
 
       assert.strictEqual(
         currentURL(),
-        '/routable-engine-demo/ember-blog/post/1'
+        '/routable-engine-demo/ember-blog/post/1',
       );
 
       await click('.routeable-engine');
@@ -75,8 +75,8 @@ module('Acceptance | routeless engine demo', function (hooks) {
 
       assert.ok(
         find('.routable-is-active-external-button').classList.contains(
-          'is-active-external'
-        )
+          'is-active-external',
+        ),
       );
     });
 
@@ -88,13 +88,13 @@ module('Acceptance | routeless engine demo', function (hooks) {
 
       assert.strictEqual(
         currentURL(),
-        '/routable-engine-demo/blog/post/2?lang=Korean'
+        '/routable-engine-demo/blog/post/2?lang=Korean',
       );
 
       assert.ok(
         find('.routable-transition-to-url-button').classList.contains(
-          'transitioned-to-url'
-        )
+          'transitioned-to-url',
+        ),
       );
     });
   });
