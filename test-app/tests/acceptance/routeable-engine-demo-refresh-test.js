@@ -45,6 +45,6 @@ if (macroCondition(dependencySatisfies('ember-source', '>= 4.1.0'))) {
         counter = counter.toString();
         assert.dom('.global-refresh-counter').hasText(counter);
       });
-    }
+    },
   );
 }
