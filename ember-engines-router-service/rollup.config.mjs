@@ -44,6 +44,13 @@ export default {
             'import initializer from "ember-engines-router-service/initializers/ember-engines-router-service";\n' +
             'export default initializer;\n',
         });
+        this.emitFile({
+          type: 'asset',
+          fileName: '_app_/services/engine-router-service.js',
+          source:
+            'import service from "ember-engines-router-service/services/engine-router-service";\n' +
+            'export default service;\n',
+        });
       },
     },
 
