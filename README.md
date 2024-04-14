@@ -69,8 +69,6 @@ The library ships types for TypeScript usage:
 import Service, { inject as service } from '@ember/service';
 import type EnginesRouterService from 'ember-engines-router-service/services/router';
 
-type Transition = ReturnType<EnginesRouterService['transitionTo']> & { sequence: number };
-
 export default class MyService extends Service {
   @service declare router: EnginesRouterService;
 
