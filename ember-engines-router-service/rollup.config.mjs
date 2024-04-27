@@ -23,7 +23,36 @@ export default {
     // These are the modules that should get reexported into the traditional
     // "app" tree. Things in here should also be in publicEntrypoints above, but
     // not everything in publicEntrypoints necessarily needs to go here.
-    addon.appReexports(['initializers/**/*.js', 'services/**/*.js']),
+    // addon.appReexports(['initializers/**/*.js', 'services/**/*.js']),
+
+    // For some reason, if v2 addon is dependency of an engine,
+    // it does not get bundled when host app is built.
+    //
+    // A small change to format of re-export file makes it work,
+    // however not clear exactly what is the root cause of such behavior, see
+    // https://github.com/villander/ember-engines-router-service/issues/67#issuecomment-1253285115
+    //
+    // Below snippet extracted from
+    // https://github.com/embroider-build/embroider/blob/main/packages/addon-dev/src/rollup-app-reexports.ts
+    {
+      name: 'custom-app-reexport',
+      async generateBundle() {
+        this.emitFile({
+          type: 'asset',
+          fileName: '_app_/initializers/ember-engines-router-service.js',
+          source:
+            'import initializer from "ember-engines-router-service/initializers/ember-engines-router-service";\n' +
+            'export { initializer as default, initializer };\n',
+        });
+        this.emitFile({
+          type: 'asset',
+          fileName: '_app_/services/engine-router-service.js',
+          source:
+            'import service from "ember-engines-router-service/services/engine-router-service";\n' +
+            'export default service;\n',
+        });
+      },
+    },
 
     // This babel config should *not* apply presets or compile away ES modules.
     // It exists only to provide development niceties for you, like automatic
