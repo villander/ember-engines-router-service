@@ -5,6 +5,16 @@
 
 
 
+
+## v0.6.0 (2024-05-03)
+
+#### :house: Internal
+* [#93](https://github.com/villander/ember-engines-router-service/pull/93) Update exports field in package.json to make TypeScript imports work ([@SergeAstapov](https://github.com/SergeAstapov))
+* [#92](https://github.com/villander/ember-engines-router-service/pull/92) Remove engines/node from package.json ([@SergeAstapov](https://github.com/SergeAstapov))
+
+#### Committers: 1
+- Sergey Astapov ([@SergeAstapov](https://github.com/SergeAstapov))
+
 ## v0.5.1 (2024-01-26)
 
 #### :rocket: Enhancement
