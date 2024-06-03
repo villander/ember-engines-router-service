@@ -4,10 +4,10 @@ module.exports = {
   root: true,
   parser: '@babel/eslint-parser',
   parserOptions: {
-    ecmaVersion: 2021,
+    ecmaVersion: 'latest',
     sourceType: 'module',
-    ecmaFeatures: {
-      legacyDecorators: true,
+    babelOptions: {
+      root: __dirname,
     },
   },
   plugins: ['ember'],
@@ -23,7 +23,12 @@ module.exports = {
   overrides: [
     // node files
     {
-      files: ['./.eslintrc.js', './.prettierrc.js', './addon-main.js'],
+      files: [
+        './.eslintrc.cjs',
+        './.prettierrc.cjs',
+        './.template-lintrc.cjs',
+        './addon-main.cjs',
+      ],
       parserOptions: {
         sourceType: 'script',
       },
@@ -31,8 +36,8 @@ module.exports = {
         browser: false,
         node: true,
       },
-      plugins: ['node'],
-      extends: ['plugin:node/recommended'],
+      plugins: ['n'],
+      extends: ['plugin:n/recommended'],
     },
   ],
 };

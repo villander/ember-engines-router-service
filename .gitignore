@@ -10,9 +10,10 @@ npm-debug.log*
 yarn-error.log
 /.DS_Store
 
-# yarn
-.pnp.*
+
+# https://yarnpkg.com/getting-started/qa/#which-files-should-be-gitignored
 .yarn/*
+!.yarn/cache
 !.yarn/patches
 !.yarn/plugins
 !.yarn/releases
