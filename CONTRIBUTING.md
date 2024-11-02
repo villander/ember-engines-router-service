@@ -2,24 +2,30 @@
 
 ## Installation
 
-* `git clone https://github.com/villander/ember-engines-router-service.git`
-* `cd ember-engines-router-service`
-* `yarn install`
+- `git clone https://github.com/villander/ember-engines-router-service.git`
+- `cd ember-engines-router-service`
+- `yarn install`
 
 ## Linting
 
-* `yarn lint`
-* `yarn lint:fix`
+- `yarn lint`
+- `yarn lint:fix`
+
+## Building the addon
+
+- `cd ember-engines-router-service`
+- `yarn build`
 
 ## Running tests
 
-* `ember test` – Runs the test suite on the current Ember version
-* `ember test --server` – Runs the test suite in "watch mode"
-* `ember try:each` – Runs the test suite against multiple Ember versions
+- `cd test-app`
+- `yarn test` – Runs the test suite on the current Ember version
+- `yarn test:watch` – Runs the test suite in "watch mode"
 
-## Running the test-app application
+## Running the test application
 
-* `ember serve`
-* Visit the test-app application at [http://localhost:4200](http://localhost:4200).
+- `cd test-app`
+- `yarn start`
+- Visit the test application at [http://localhost:4200](http://localhost:4200).
 
-For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
+For more information on using ember-cli, visit [https://cli.emberjs.com/release/](https://cli.emberjs.com/release/).

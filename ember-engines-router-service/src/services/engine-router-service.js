@@ -6,9 +6,9 @@ import { reads } from '@ember/object/computed';
 import { getOwner } from '@ember/application';
 import Evented from '@ember/object/evented';
 import { macroCondition, dependencySatisfies } from '@embroider/macros';
-import { namespaceEngineRouteName } from '../utils/namespace-engine-route-name';
-import { getRootOwner } from '../utils/root-owner';
-import { resemblesURL } from '../utils/resembles-url';
+import { namespaceEngineRouteName } from '../utils/namespace-engine-route-name.js';
+import { getRootOwner } from '../utils/root-owner.js';
+import { resemblesURL } from '../utils/resembles-url.js';
 
 const warningMessage =
   'Refresh method is not available in ember-source below v4.1';
@@ -53,7 +53,7 @@ export default class EngineRouterService extends Service.extend(Evented) {
       return 'application';
     }
     return this.externalRouter.currentRouteName.slice(
-      this._mountPoint.length + 1
+      this._mountPoint.length + 1,
     );
   }
 
@@ -64,7 +64,7 @@ export default class EngineRouterService extends Service.extend(Evented) {
   getExternalRouteName(externalRouteName) {
     assert(
       `External route '${externalRouteName}' is unknown.`,
-      externalRouteName in this._externalRoutes
+      externalRouteName in this._externalRoutes,
     );
     return this._externalRoutes[externalRouteName];
   }
@@ -77,7 +77,7 @@ export default class EngineRouterService extends Service.extend(Evented) {
 
       return this.externalRouter.refresh(
         namespaceEngineRouteName(this._mountPoint, routeName),
-        ...args
+        ...args,
       );
     } else {
       assert(warningMessage);
@@ -88,7 +88,7 @@ export default class EngineRouterService extends Service.extend(Evented) {
     if (macroCondition(dependencySatisfies('ember-source', '>= 4.1.0'))) {
       return this.externalRouter.refresh(
         this.getExternalRouteName(routeName),
-        ...args
+        ...args,
       );
     } else {
       assert(warningMessage);
@@ -102,14 +102,14 @@ export default class EngineRouterService extends Service.extend(Evented) {
 
     return this.externalRouter.transitionTo(
       namespaceEngineRouteName(this._mountPoint, routeName),
-      ...args
+      ...args,
     );
   }
 
   transitionToExternal(routeName, ...args) {
     return this.externalRouter.transitionTo(
       this.getExternalRouteName(routeName),
-      ...args
+      ...args,
     );
   }
 
@@ -120,42 +120,42 @@ export default class EngineRouterService extends Service.extend(Evented) {
 
     return this.externalRouter.replaceWith(
       namespaceEngineRouteName(this._mountPoint, routeName),
-      ...args
+      ...args,
     );
   }
 
   replaceWithExternal(routeName, ...args) {
     return this.externalRouter.replaceWith(
       this.getExternalRouteName(routeName),
-      ...args
+      ...args,
     );
   }
 
   urlFor(routeName, ...args) {
     return this.externalRouter.urlFor(
       namespaceEngineRouteName(this._mountPoint, routeName),
-      ...args
+      ...args,
     );
   }
 
   urlForExternal(routeName, ...args) {
     return this.externalRouter.urlFor(
       this.getExternalRouteName(routeName),
-      ...args
+      ...args,
     );
   }
 
   isActive(routeName, ...args) {
     return this.externalRouter.isActive(
       namespaceEngineRouteName(this._mountPoint, routeName),
-      ...args
+      ...args,
     );
   }
 
   isActiveExternal(routeName, ...args) {
     return this.externalRouter.isActive(
       this.getExternalRouteName(routeName),
-      ...args
+      ...args,
     );
   }
 }

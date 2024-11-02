@@ -1,5 +1,5 @@
 // Load extensions to Ember
-import '../-private/engine-ext';
+import '../-private/engine-ext.js';
 
 // TODO: Move to ensure they run prior to instantiating Ember.Application
 export function initialize() {}

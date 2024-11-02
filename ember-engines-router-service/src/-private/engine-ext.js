@@ -1,6 +1,6 @@
 import Application from '@ember/application';
-import EngineRouterService from '../services/engine-router-service';
 import Engine from '@ember/engine';
+import EngineRouterService from '../services/engine-router-service.js';
 
 Engine.reopen({
   buildRegistry() {
