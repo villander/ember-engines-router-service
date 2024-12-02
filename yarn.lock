@@ -4940,7 +4940,9 @@ common-ancestor-path@^1.0.1:
 
 "common-components@link:test-app/lib/common-components":
   version "0.0.0"
-  uid ""
+  dependencies:
+    ember-cli-babel "*"
+    ember-cli-htmlbars "*"
 
 common-tags@^1.8.0:
   version "1.8.2"
@@ -5600,7 +5602,9 @@ duplexer3@^0.1.4:
 
 "eager-blog@link:./test-app/lib/eager-blog":
   version "0.0.0"
-  uid ""
+  dependencies:
+    ember-cli-babel "*"
+    ember-cli-htmlbars "*"
 
 eastasianwidth@^0.2.0:
   version "0.2.0"
@@ -5766,11 +5770,17 @@ ember-auto-import@^2.7.4:
 
 "ember-blog@link:./test-app/lib/ember-blog":
   version "0.0.0"
-  uid ""
+  dependencies:
+    common-components "link:test-app/lib/common-components"
+    ember-cli-babel "*"
+    ember-cli-htmlbars "*"
 
 "ember-chat@link:./test-app/lib/ember-chat":
   version "0.0.0"
-  uid ""
+  dependencies:
+    common-components "link:test-app/lib/common-components"
+    ember-cli-babel "*"
+    ember-cli-htmlbars "*"
 
 ember-cli-babel-plugin-helpers@^1.0.0, ember-cli-babel-plugin-helpers@^1.1.1:
   version "1.1.1"
