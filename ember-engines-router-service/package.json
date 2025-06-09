@@ -59,6 +59,7 @@
     "@types/ember__routing": "^4.0.22",
     "babel-plugin-ember-template-compilation": "^2.2.5",
     "concurrently": "^8.2.2",
+    "ember-source": "^6.4.0",
     "ember-template-lint": "^6.0.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
@@ -69,9 +70,6 @@
     "prettier": "^3.3.2",
     "prettier-plugin-ember-template-tag": "^2.0.2",
     "rollup": "^4.18.1"
-  },
-  "peerDependencies": {
-    "ember-source": "^3.28.0 || ^4.0.0 || ^5.0.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
