@@ -19,14 +19,14 @@
   },
   "scripts": {
     "build": "ember build --environment=production",
-    "lint": "concurrently \"yarn:lint:*(!fix)\" --names \"lint:\"",
-    "lint:fix": "concurrently \"yarn:lint:*:fix\" --names \"fix:\"",
+    "lint": "concurrently \"pnpm:lint:*(!fix)\" --names \"lint:\"",
+    "lint:fix": "concurrently \"pnpm:lint:*:fix\" --names \"fix:\"",
     "lint:hbs": "ember-template-lint .",
     "lint:hbs:fix": "ember-template-lint . --fix",
     "lint:js": "eslint . --cache",
     "lint:js:fix": "eslint . --fix",
     "start": "ember serve",
-    "test": "concurrently \"yarn:lint\" \"yarn:test:*\" --names \"lint,test:\"",
+    "test": "concurrently \"pnpm:lint\" \"pnpm:test:*\" --names \"lint,test:\"",
     "test:ember": "ember test"
   },
   "devDependencies": {
@@ -55,7 +55,7 @@
     "ember-cli-inject-live-reload": "^2.1.0",
     "ember-cli-sri": "^2.1.1",
     "ember-cli-terser": "^4.0.2",
-    "ember-engines": "^0.9.0",
+    "ember-engines": "^0.12.0",
     "ember-engines-router-service": "0.6.0",
     "ember-load-initializers": "^2.1.2",
     "ember-qunit": "^8.1.0",

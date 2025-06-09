@@ -10,9 +10,6 @@
     "url": "git+https://github.com/villander/ember-engines-router-service.git"
   },
   "license": "MIT",
-  "authors": [
-    "Michael Villander"
-  ],
   "exports": {
     ".": "./dist/index.js",
     "./*": {
@@ -35,8 +32,8 @@
   ],
   "scripts": {
     "build": "rollup --config",
-    "lint": "concurrently 'yarn:lint:*(!fix)' --names 'lint:'",
-    "lint:fix": "concurrently 'yarn:lint:*:fix' --names 'fix:'",
+    "lint": "concurrently 'pnpm:lint:*(!fix)' --names 'lint:'",
+    "lint:fix": "concurrently 'pnpm:lint:*:fix' --names 'fix:'",
     "lint:hbs": "ember-template-lint . --no-error-on-unmatched-pattern",
     "lint:hbs:fix": "ember-template-lint . --fix --no-error-on-unmatched-pattern",
     "lint:js": "eslint . --cache",
@@ -59,6 +56,7 @@
     "@types/ember__routing": "^4.0.22",
     "babel-plugin-ember-template-compilation": "^2.2.5",
     "concurrently": "^8.2.2",
+    "ember-source": "^6.4.0",
     "ember-template-lint": "^6.0.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
@@ -70,12 +68,12 @@
     "prettier-plugin-ember-template-tag": "^2.0.2",
     "rollup": "^4.18.1"
   },
-  "peerDependencies": {
-    "ember-source": "^3.28.0 || ^4.0.0 || ^5.0.0"
-  },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
   },
+  "authors": [
+    "Michael Villander"
+  ],
   "ember": {
     "edition": "octane"
   },
