@@ -1,6 +1,6 @@
 {
   "name": "test-app",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "private": true,
   "description": "Test app for ember-engines-router-service addon",
   "keywords": [],
@@ -56,7 +56,7 @@
     "ember-cli-sri": "^2.1.1",
     "ember-cli-terser": "^4.0.2",
     "ember-engines": "^0.12.0",
-    "ember-engines-router-service": "0.6.0",
+    "ember-engines-router-service": "0.7.0",
     "ember-load-initializers": "^2.1.2",
     "ember-qunit": "^8.1.0",
     "ember-resolver": "^12.0.1",

@@ -6,6 +6,19 @@
 
 
 
+
+## v0.7.0 (2025-10-20)
+
+#### :rocket: Enhancement
+* [#94](https://github.com/villander/ember-engines-router-service/pull/94) Sync with latest addon blueprint and use decorator-transforms ([@SergeAstapov](https://github.com/SergeAstapov))
+
+#### :bug: Bug Fix
+* [#99](https://github.com/villander/ember-engines-router-service/pull/99) feat: switch to `pnpm` & Remove ember-source as a peer dependency ([@aklkv](https://github.com/aklkv))
+
+#### Committers: 2
+- Alexey Kulakov ([@aklkv](https://github.com/aklkv))
+- Sergey Astapov ([@SergeAstapov](https://github.com/SergeAstapov))
+
 ## v0.6.0 (2024-05-03)
 
 #### :house: Internal
