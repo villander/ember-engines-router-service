@@ -18,12 +18,12 @@
 
 {{!-- template-lint-disable no-action --}}
 <LinkTo @query={{hash lang="Japanese"}} class="routable-post-jp-link">Go to Japanese version</LinkTo>
-<button {{action "goToChineseVersion"}} class="routable-post-ch-link" type="button">Go to Chinese version</button>
-<button {{action "transitionToHome"}} class="routable-post-transition-to-home-button {{if this.transitionedToExternal "transitioned-to-external"}}" type="button">
+<button {{on "click" this.goToChineseVersion}} class="routable-post-ch-link" type="button">Go to Chinese version</button>
+<button {{on "click" this.transitionToHome}} class="routable-post-transition-to-home-button {{if this.transitionedToExternal "transitioned-to-external"}}" type="button">
     Go home programmatically
 </button>
 
-<button {{action "replaceWithHome"}} class="routable-post-replace-with-home-button {{if this.replacedWithExternal "replaced-with-external"}}" type="button">
+<button {{on "click" this.replaceWithHome}} class="routable-post-replace-with-home-button {{if this.replacedWithExternal "replaced-with-external"}}" type="button">
     Also goes home programmatically
 </button>
 

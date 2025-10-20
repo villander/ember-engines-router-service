@@ -35,4 +35,22 @@ export default class extends Controller {
       set(this, 'transitionTo', true);
     });
   }
+
+  @action goToChineseVersion() {
+    this.transitionTo({ queryParams: { lang: 'Chinese' } });
+  }
+
+  @action transitionToHome() {
+    this.transitionToExternal('home').then(() => {
+      var postController = this.controllerFor(this.routeName);
+      postController.set('transitionedToExternal', true);
+    });
+  }
+
+  @action replaceWithHome() {
+    this.replaceWithExternal('home').then(() => {
+      var postController = this.controllerFor(this.routeName);
+      postController.set('replacedWithExternal', true);
+    });
+  }
 }

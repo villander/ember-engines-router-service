@@ -10,12 +10,3 @@ npm-debug.log*
 yarn-error.log
 /.DS_Store
 
-
-# https://yarnpkg.com/getting-started/qa/#which-files-should-be-gitignored
-.yarn/*
-!.yarn/cache
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
