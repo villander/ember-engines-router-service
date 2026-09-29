@@ -1,7 +1,5 @@
 'use strict';
 
-const { embroiderSafe, embroiderOptimized } = require('@embroider/test-setup');
-
 // Companions that predate Ember 7; the versions in package.json assume it.
 const olderToolchain = {
   '@ember/test-helpers': '^4.0.5',
@@ -109,8 +107,20 @@ module.exports = async function () {
           },
         },
       },
-      embroiderSafe(),
-      embroiderOptimized(),
+      // The app always builds with Embroider, so these vary the compat
+      // options rather than swapping the build. @embroider/test-setup's
+      // embroiderSafe/embroiderOptimized cannot be used: they pin Embroider 3
+      // and @embroider/webpack, which conflict with @embroider/vite.
+      {
+        name: 'embroider-safe',
+        env: { EMBROIDER_TEST_SETUP_OPTIONS: 'safe' },
+        npm: { devDependencies: {} },
+      },
+      {
+        name: 'embroider-optimized',
+        env: { EMBROIDER_TEST_SETUP_OPTIONS: 'optimized' },
+        npm: { devDependencies: {} },
+      },
     ],
   };
 };

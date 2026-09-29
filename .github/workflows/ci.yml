@@ -77,8 +77,8 @@ jobs:
           - ember-release
           - ember-beta
           - ember-canary
-          # - embroider-safe
-          # - embroider-optimized
+          - embroider-safe
+          - embroider-optimized
         include:
           - try-scenario: ember-canary
             allowed-to-fail: true
