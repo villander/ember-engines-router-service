@@ -5,7 +5,8 @@
     "ember-addon"
   ],
   "dependencies": {
-    "ember-cli-htmlbars": "*",
-    "ember-cli-babel": "*"
+    "ember-auto-import": "^2.13.1",
+    "ember-cli-babel": "*",
+    "ember-cli-htmlbars": "*"
   }
 }

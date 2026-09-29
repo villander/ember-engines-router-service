@@ -8,6 +8,10 @@ module.exports = {
     sourceType: 'module',
     requireConfigFile: false,
     babelOptions: {
+      // babel.config.mjs is ESM, which @babel/eslint-parser cannot load
+      // synchronously; lint does not need the real build config anyway.
+      configFile: false,
+      babelrc: false,
       plugins: [
         ['@babel/plugin-proposal-decorators', { decoratorsBeforeExport: true }],
       ],

@@ -1,12 +1,14 @@
 packages:
   - ember-engines-router-service
   - test-app
+  - test-app/lib/*
 
 onlyBuiltDependencies:
   - core-js
 
 overrides:
   ember-cli-htmlbars: ^7.0.1
-
-patchedDependencies:
-  ember-asset-loader@1.0.0: patches/ember-asset-loader@1.0.0.patch
+  # @types/ember__application pulls @glimmer/component 1.x, which splits
+  # ember-source into two peer variants. Two copies of ember-source means two
+  # `Engine` classes, and the addon then patches one while engines use the other.
+  '@glimmer/component': ^2.1.1

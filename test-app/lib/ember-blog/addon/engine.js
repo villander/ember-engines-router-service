@@ -2,12 +2,13 @@ import Engine from 'ember-engines/engine';
 import Resolver from 'ember-resolver';
 import loadInitializers from 'ember-load-initializers';
 import config from './config/environment';
+import compatModules from '@embroider/virtual/compat-modules';
 
 const { modulePrefix } = config;
 
 class Eng extends Engine {
-  modulePrefix = modulePrefix;
-  Resolver = Resolver;
+  modulePrefix = config.modulePrefix;
+  Resolver = Resolver.withModules(compatModules);
 
   dependencies = {
     services: ['data-store'],
@@ -15,6 +16,6 @@ class Eng extends Engine {
   };
 }
 
-loadInitializers(Eng, modulePrefix);
+loadInitializers(Eng, modulePrefix, compatModules);
 
 export default Eng;

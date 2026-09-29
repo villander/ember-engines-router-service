@@ -9,8 +9,16 @@
     "engineConfigPath": "ember-config"
   },
   "dependencies": {
-    "@ember/legacy-built-in-components": "^0.4.1",
+    "@embroider/macros": "^1.21.1",
+    "ember-auto-import": "^2.13.1",
     "ember-cli-babel": "*",
-    "ember-cli-htmlbars": "*"
+    "ember-cli-htmlbars": "*",
+    "ember-engines": "^0.13.1",
+    "ember-engines-router-service": "workspace:*",
+    "ember-load-initializers": "^3.0.1",
+    "ember-resolver": "^13.2.0"
+  },
+  "peerDependencies": {
+    "ember-source": ">=3.28.12"
   }
 }
