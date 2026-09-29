@@ -26,7 +26,7 @@ jobs:
           cache: pnpm
 
       - name: Install Dependencies
-        run: until pnpm install --frozen-lockfile; do echo "Retrying pnpm"; done
+        run: for i in 1 2 3; do pnpm install --frozen-lockfile && exit 0; echo "Retrying pnpm ($i/3)"; sleep 5; done; exit 1
 
       - name: Lint
         run: pnpm lint
@@ -37,7 +37,7 @@ jobs:
   floating:
     name: "Floating Dependencies"
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 10
 
     steps:
       - uses: actions/checkout@v4
@@ -49,7 +49,7 @@ jobs:
 
       - name: Install Dependencies
 
-        run: until pnpm install --no-lockfile; do echo "Retrying pnpm"; done
+        run: for i in 1 2 3; do pnpm install --no-lockfile && exit 0; echo "Retrying pnpm ($i/3)"; sleep 5; done; exit 1
 
       - name: Run Tests
         run: pnpm test
@@ -92,7 +92,7 @@ jobs:
           cache: pnpm
 
       - name: Install Dependencies
-        run: until pnpm install --frozen-lockfile; do echo "Retrying pnpm"; done
+        run: for i in 1 2 3; do pnpm install --frozen-lockfile && exit 0; echo "Retrying pnpm ($i/3)"; sleep 5; done; exit 1
 
       - name: Run Tests
         run: ./node_modules/.bin/ember try:one ${{ matrix.try-scenario }} --skip-cleanup
