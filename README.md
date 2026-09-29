@@ -65,6 +65,8 @@ ember install ember-engines-router-service
 
 Basically you have the full [RouterService](https://api.emberjs.com/ember/release/classes/RouterService) API **inside each engine**. That means you can use APIs such as `transitionTo` and `isActive`, plus the new "external routing" APIs such as `transitionToExternal` and `isActiveExternal` which help link `externalRoutes` together.
 
+Route names are relative to the engine, and so is `refresh`: `refresh('some.route')` reloads that route and its children, and `refresh()` reloads every active route of the engine, just as the app's `refresh()` reloads every active route of the app.
+
 ```js
 import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
