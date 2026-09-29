@@ -55,3 +55,11 @@
 <button class="routable-transition-to-url-button {{if this.transitionTo "transitioned-to-url"}}" type="button" {{on "click" (fn this.transitionToUrlByService "/routable-engine-demo/blog/post/2?lang=Korean")}}>
   Go to direct URL (Engine Router Service)
 </button>
+
+<button class="routable-transition-to-query-params-button" type="button" {{on "click" (fn this.transitionToLanguageByService "Korean")}}>
+  Switch language (Engine Router Service)
+</button>
+
+<button class="routable-replace-with-query-params-button" type="button" {{on "click" (fn this.replaceWithLanguageByService "Korean")}}>
+  Also switch language (Engine Router Service)
+</button>
