@@ -4,3 +4,9 @@ packages:
 
 onlyBuiltDependencies:
   - core-js
+
+overrides:
+  ember-cli-htmlbars: ^7.0.1
+
+patchedDependencies:
+  ember-asset-loader@1.0.0: patches/ember-asset-loader@1.0.0.patch

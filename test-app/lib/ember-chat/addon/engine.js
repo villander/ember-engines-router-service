@@ -5,16 +5,14 @@ import config from './config/environment';
 
 const { modulePrefix } = config;
 
-const Eng = Engine.extend({
-  modulePrefix,
-  Resolver,
-  init() {
-    this._super(...arguments);
-    this.dependencies = {
-      services: ['store'],
-    };
-  },
-});
+class Eng extends Engine {
+  modulePrefix = modulePrefix;
+  Resolver = Resolver;
+
+  dependencies = {
+    services: ['store'],
+  };
+}
 
 loadInitializers(Eng, modulePrefix);
 
