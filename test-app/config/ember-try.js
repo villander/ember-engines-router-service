@@ -98,9 +98,7 @@ module.exports = async function () {
         },
       },
       {
-        // Unreleased; allowed to fail so it warns without gating.
         name: 'ember-canary',
-        allowedToFail: true,
         npm: {
           devDependencies: {
             'ember-source': 'alpha',
