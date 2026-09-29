@@ -26,15 +26,9 @@ importers:
       '@embroider/addon-shim':
         specifier: ^1.10.3
         version: 1.10.3
-      '@embroider/macros':
-        specifier: ^1.21.1
-        version: 1.21.1(@babel/core@7.24.7)
       decorator-transforms:
         specifier: ^2.0.0
         version: 2.0.0(@babel/core@7.24.7)
-      ember-source:
-        specifier: ^3.24.0 || >=4.0.0
-        version: 7.3.0(@glimmer/component@2.1.1)
     devDependencies:
       '@babel/core':
         specifier: ^7.24.7
@@ -188,10 +182,10 @@ importers:
         version: 7.0.1(@babel/core@7.24.7)(ember-source@7.3.0(@glimmer/component@2.1.1))
       ember-engines:
         specifier: ^0.13.1
-        version: 0.13.1(ember-engines-router-service@file:ember-engines-router-service(@babel/core@7.24.7)(ember-source@7.3.0(@glimmer/component@2.1.1)))(ember-source@7.3.0(@glimmer/component@2.1.1))
+        version: 0.13.1(ember-engines-router-service@file:ember-engines-router-service(@babel/core@7.24.7))(ember-source@7.3.0(@glimmer/component@2.1.1))
       ember-engines-router-service:
         specifier: workspace:*
-        version: file:ember-engines-router-service(@babel/core@7.24.7)(ember-source@7.3.0(@glimmer/component@2.1.1))
+        version: file:ember-engines-router-service(@babel/core@7.24.7)
       ember-load-initializers:
         specifier: ^3.0.1
         version: 3.0.1(ember-source@7.3.0(@glimmer/component@2.1.1))
@@ -4435,8 +4429,6 @@ packages:
 
   ember-engines-router-service@file:ember-engines-router-service:
     resolution: {directory: ember-engines-router-service, type: directory}
-    peerDependencies:
-      ember-source: ^3.24.0 || >=4.0.0
 
   ember-engines@0.13.1:
     resolution: {integrity: sha512-aWoBBBlI0CfQFxL4Lz1ylqGCEtEtO+gSyS0E0Jx0aUVvZFvRccbbMOdRL8oMuenxmxjgJoiASvf2rtyF1sBN2Q==}
@@ -14595,7 +14587,7 @@ snapshots:
       ember-auto-import: 2.13.1(webpack@5.92.1)
       ember-cli-babel: 8.3.2(@babel/core@7.24.7)
       ember-cli-htmlbars: 7.0.1(@babel/core@7.24.7)(ember-source@7.3.0(@glimmer/component@2.1.1))
-      ember-engines: 0.13.1(ember-engines-router-service@file:ember-engines-router-service(@babel/core@7.24.7)(ember-source@7.3.0(@glimmer/component@2.1.1)))(ember-source@7.3.0(@glimmer/component@2.1.1))
+      ember-engines: 0.13.1(ember-engines-router-service@file:ember-engines-router-service(@babel/core@7.24.7))(ember-source@7.3.0(@glimmer/component@2.1.1))
       ember-engines-router-service: link:ember-engines-router-service
       ember-load-initializers: 3.0.1(ember-source@7.3.0(@glimmer/component@2.1.1))
       ember-resolver: 13.2.0
@@ -14691,7 +14683,7 @@ snapshots:
       ember-auto-import: 2.13.1(webpack@5.92.1)
       ember-cli-babel: 8.3.2(@babel/core@7.24.7)
       ember-cli-htmlbars: 7.0.1(@babel/core@7.24.7)(ember-source@7.3.0(@glimmer/component@2.1.1))
-      ember-engines: 0.13.1(ember-engines-router-service@file:ember-engines-router-service(@babel/core@7.24.7)(ember-source@7.3.0(@glimmer/component@2.1.1)))(ember-source@7.3.0(@glimmer/component@2.1.1))
+      ember-engines: 0.13.1(ember-engines-router-service@file:ember-engines-router-service(@babel/core@7.24.7))(ember-source@7.3.0(@glimmer/component@2.1.1))
       ember-engines-router-service: link:ember-engines-router-service
       ember-load-initializers: 3.0.1(ember-source@7.3.0(@glimmer/component@2.1.1))
       ember-resolver: 13.2.0
@@ -14709,7 +14701,7 @@ snapshots:
       ember-auto-import: 2.13.1(webpack@5.92.1)
       ember-cli-babel: 8.3.2(@babel/core@7.24.7)
       ember-cli-htmlbars: 7.0.1(@babel/core@7.24.7)(ember-source@7.3.0(@glimmer/component@2.1.1))
-      ember-engines: 0.13.1(ember-engines-router-service@file:ember-engines-router-service(@babel/core@7.24.7)(ember-source@7.3.0(@glimmer/component@2.1.1)))(ember-source@7.3.0(@glimmer/component@2.1.1))
+      ember-engines: 0.13.1(ember-engines-router-service@file:ember-engines-router-service(@babel/core@7.24.7))(ember-source@7.3.0(@glimmer/component@2.1.1))
       ember-engines-router-service: link:ember-engines-router-service
       ember-load-initializers: 3.0.1(ember-source@7.3.0(@glimmer/component@2.1.1))
       ember-resolver: 13.2.0
@@ -15109,15 +15101,12 @@ snapshots:
       - '@babel/core'
       - supports-color
 
-  ember-engines-router-service@file:ember-engines-router-service(@babel/core@7.24.7)(ember-source@7.3.0(@glimmer/component@2.1.1)):
+  ember-engines-router-service@file:ember-engines-router-service(@babel/core@7.24.7):
     dependencies:
       '@embroider/addon-shim': 1.10.3
-      '@embroider/macros': 1.21.1(@babel/core@7.24.7)
       decorator-transforms: 2.4.0(@babel/core@7.24.7)
-      ember-source: 7.3.0(@glimmer/component@2.1.1)
     transitivePeerDependencies:
       - '@babel/core'
-      - '@glint/template'
       - supports-color
 
   ember-engines@0.13.1(ember-engines-router-service@ember-engines-router-service)(ember-source@7.3.0(@glimmer/component@2.1.1)):
@@ -15148,7 +15137,7 @@ snapshots:
       - '@glint/template'
       - supports-color
 
-  ember-engines@0.13.1(ember-engines-router-service@file:ember-engines-router-service(@babel/core@7.24.7)(ember-source@7.3.0(@glimmer/component@2.1.1)))(ember-source@7.3.0(@glimmer/component@2.1.1)):
+  ember-engines@0.13.1(ember-engines-router-service@file:ember-engines-router-service(@babel/core@7.24.7))(ember-source@7.3.0(@glimmer/component@2.1.1)):
     dependencies:
       '@babel/core': 7.29.7
       '@embroider/macros': 1.21.1(@babel/core@7.29.7)
@@ -15171,7 +15160,7 @@ snapshots:
       ember-source: 7.3.0(@glimmer/component@2.1.1)
       lodash: 4.18.1
     optionalDependencies:
-      ember-engines-router-service: file:ember-engines-router-service(@babel/core@7.24.7)(ember-source@7.3.0(@glimmer/component@2.1.1))
+      ember-engines-router-service: file:ember-engines-router-service(@babel/core@7.24.7)
     transitivePeerDependencies:
       - '@glint/template'
       - supports-color

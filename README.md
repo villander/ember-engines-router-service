@@ -8,8 +8,14 @@ This addon provides an API for authoring a [Router service](https://api.emberjs.
 
 ## Compatibility
 
-- Ember.js v3.24 or above
+- Ember.js v4.1 or above
 - Embroider or ember-auto-import v2
+
+v4.1 is the floor because `refresh` relies on `RouterService#refresh`, added in
+that release. Earlier versions are not merely untested: ember-source 4.0 does
+not export `service` from `@ember/service`, and ember-cli 7 cannot build
+ember-source 3.28, so they cannot be exercised at all. CI covers 4.1 through
+canary.
 
 ### Using this addon with Ember Engines under Vite/Embroider
 
