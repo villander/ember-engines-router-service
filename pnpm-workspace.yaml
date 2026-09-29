@@ -1,3 +1,6 @@
 packages:
   - ember-engines-router-service
   - test-app
+
+onlyBuiltDependencies:
+  - core-js
