@@ -13,6 +13,7 @@ if (macroCondition(dependencySatisfies('ember-source', '>= 4.1.0'))) {
         await visit('/routable-engine-demo/ember-blog/new');
 
         let counter = await find('.route-refresh-counter').textContent;
+        const hostCounter = find('.global-refresh-counter').textContent.trim();
 
         await click('.refresh');
 
@@ -20,18 +21,31 @@ if (macroCondition(dependencySatisfies('ember-source', '>= 4.1.0'))) {
         counter = ++counter;
         counter = counter.toString();
         assert.dom('.route-refresh-counter').hasText(counter);
+        assert
+          .dom('.global-refresh-counter')
+          .hasText(
+            hostCounter,
+            'routes above the refreshed one are not reloaded',
+          );
       });
 
       test('refresh with params triggers refresh on provided route', async function (assert) {
         await visit('/routable-engine-demo/ember-blog/new');
 
         let counter = await find('.route-refresh-counter').textContent;
+        const hostCounter = find('.global-refresh-counter').textContent.trim();
         await click('.refresh-route');
 
         counter = parseInt(counter, 10);
         counter = ++counter;
         counter = counter.toString();
         assert.dom('.route-refresh-counter').hasText(counter);
+        assert
+          .dom('.global-refresh-counter')
+          .hasText(
+            hostCounter,
+            'routes above the refreshed one are not reloaded',
+          );
       });
 
       test('refresh external route', async function (assert) {
