@@ -12,8 +12,20 @@ module.exports = {
       parserOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',
+        // babel-plugin-ember-template-compilation 4 is async-only and
+        // @babel/eslint-parser runs Babel synchronously; lint does not need the
+        // real build config, so skip loading it.
+        requireConfigFile: false,
         babelOptions: {
           root: __dirname,
+          configFile: false,
+          babelrc: false,
+          plugins: [
+            [
+              '@babel/plugin-proposal-decorators',
+              { decoratorsBeforeExport: true },
+            ],
+          ],
         },
       },
       plugins: ['ember', 'import'],
