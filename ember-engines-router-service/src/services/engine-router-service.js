@@ -68,17 +68,23 @@ export default class EngineRouterService extends Service.extend(Evented) {
     return this._externalRoutes[externalRouteName];
   }
 
-  refresh(routeName = this.currentRouteName, ...args) {
+  refresh(routeName = this.currentRouteName) {
     assert(warningMessage, typeof this.externalRouter.refresh === 'function');
 
     if (resemblesURL(routeName)) {
       return this.externalRouter.refresh(routeName);
     }
 
-    return this.externalRouter.refresh(
-      namespaceEngineRouteName(this._mountPoint, routeName),
-      ...args,
+    // The host router looks up its pivot route on the host owner, which cannot
+    // see engine routes, so it would fall back to refreshing every active route.
+    const route = getOwner(this).lookup(`route:${routeName}`);
+
+    assert(
+      `The route "${routeName}" is currently not active`,
+      route && this.isActive(routeName),
     );
+
+    return route.refresh();
   }
 
   refreshExternal(routeName, ...args) {
