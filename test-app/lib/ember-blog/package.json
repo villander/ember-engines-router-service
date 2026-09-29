@@ -18,8 +18,5 @@
     "ember-engines-router-service": "workspace:*",
     "ember-load-initializers": "^3.0.1",
     "ember-resolver": "^13.2.0"
-  },
-  "peerDependencies": {
-    "ember-source": ">=3.28.12"
   }
 }

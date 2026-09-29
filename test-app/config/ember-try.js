@@ -2,16 +2,72 @@
 
 const { embroiderSafe, embroiderOptimized } = require('@embroider/test-setup');
 
+// Companions that predate Ember 7; the versions in package.json assume it.
+const olderToolchain = {
+  '@ember/test-helpers': '^4.0.5',
+  '@glimmer/component': '^1.1.2',
+};
+
 module.exports = async function () {
   return {
     usePnpm: true,
     scenarios: [
       {
-        // Current LTS. The Vite/Embroider build cannot drive the much older
-        // ember-source lines that used to be in this matrix, so 6.12 is the
-        // floor the test app can actually exercise.
+        name: 'ember-lts-4.4',
+        npm: {
+          devDependencies: {
+            'ember-source': '~4.4.0',
+            ...olderToolchain,
+          },
+        },
+      },
+      {
+        name: 'ember-lts-4.8',
+        npm: {
+          devDependencies: {
+            'ember-source': '~4.8.0',
+            ...olderToolchain,
+          },
+        },
+      },
+      {
+        name: 'ember-lts-4.12',
+        npm: {
+          devDependencies: {
+            'ember-source': '~4.12.0',
+            ...olderToolchain,
+          },
+        },
+      },
+      {
+        name: 'ember-lts-5.4',
+        npm: {
+          devDependencies: {
+            'ember-source': '~5.4.0',
+            ...olderToolchain,
+          },
+        },
+      },
+      {
+        name: 'ember-lts-5.8',
+        npm: {
+          devDependencies: {
+            'ember-source': '~5.8.0',
+            ...olderToolchain,
+          },
+        },
+      },
+      {
+        name: 'ember-lts-5.12',
+        npm: {
+          devDependencies: {
+            'ember-source': '~5.12.0',
+            ...olderToolchain,
+          },
+        },
+      },
+      {
         name: 'ember-lts-6.12',
-        allowedToFail: true,
         npm: {
           devDependencies: {
             'ember-source': 'lts',
@@ -28,7 +84,6 @@ module.exports = async function () {
       },
       {
         name: 'ember-beta',
-        allowedToFail: true,
         npm: {
           devDependencies: {
             'ember-source': 'beta',
@@ -36,6 +91,7 @@ module.exports = async function () {
         },
       },
       {
+        // Unreleased; allowed to fail so it warns without gating.
         name: 'ember-canary',
         allowedToFail: true,
         npm: {

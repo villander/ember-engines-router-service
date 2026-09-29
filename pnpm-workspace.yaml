@@ -8,7 +8,3 @@ onlyBuiltDependencies:
 
 overrides:
   ember-cli-htmlbars: ^7.0.1
-  # @types/ember__application pulls @glimmer/component 1.x, which splits
-  # ember-source into two peer variants. Two copies of ember-source means two
-  # `Engine` classes, and the addon then patches one while engines use the other.
-  '@glimmer/component': ^2.1.1

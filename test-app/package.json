@@ -89,5 +89,19 @@
   "exports": {
     "./tests/*": "./tests/*",
     "./*": "./app/*"
+  },
+  "dependenciesMeta": {
+    "ember-engines-router-service": {
+      "injected": true
+    },
+    "eager-blog": {
+      "injected": true
+    },
+    "ember-blog": {
+      "injected": true
+    },
+    "ember-chat": {
+      "injected": true
+    }
   }
 }
