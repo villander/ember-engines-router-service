@@ -68,20 +68,25 @@ export default class EngineRouterService extends Service.extend(Evented) {
     return this._externalRoutes[externalRouteName];
   }
 
-  refresh(routeName = this.currentRouteName) {
+  refresh(routeName) {
     assert(warningMessage, typeof this.externalRouter.refresh === 'function');
 
-    if (resemblesURL(routeName)) {
-      return this.externalRouter.refresh(routeName);
+    // Without a route name `RouterService#refresh` refreshes every active
+    // route; within an engine those start at the engine's application route.
+    const pivotRouteName = routeName || 'application';
+
+    if (resemblesURL(pivotRouteName)) {
+      return this.externalRouter.refresh(pivotRouteName);
     }
 
     // The host router looks up its pivot route on the host owner, which cannot
     // see engine routes, so it would fall back to refreshing every active route.
-    const route = getOwner(this).lookup(`route:${routeName}`);
+    const route = getOwner(this).lookup(`route:${pivotRouteName}`);
 
+    assert(`The route "${pivotRouteName}" was not found`, route);
     assert(
-      `The route "${routeName}" is currently not active`,
-      route && this.isActive(routeName),
+      `The route "${pivotRouteName}" is currently not active`,
+      this.isActive(pivotRouteName),
     );
 
     return route.refresh();

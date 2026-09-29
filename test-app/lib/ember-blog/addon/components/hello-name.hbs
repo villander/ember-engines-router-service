@@ -21,6 +21,14 @@
   </button>
 
   <button
+    class='refresh-post'
+    type='button'
+    {{on 'click' this.refreshPost}}
+  >
+    Refresh Post
+  </button>
+
+  <button
     class='refresh-external'
     type='button'
     {{on 'click' this.refreshExternal}}
