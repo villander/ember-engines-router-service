@@ -11,6 +11,47 @@ This addon provides an API for authoring a [Router service](https://api.emberjs.
 - Ember.js v3.24 or above
 - Embroider or ember-auto-import v2
 
+### Ember 7 requires a Vite/Embroider build
+
+On **ember-source 7 with a classic (non-Vite) build, this addon silently does
+nothing**: the engine's `router` service is never registered, and you get
+
+```
+Assertion Failed: Attempting to inject an unknown injection: 'service:router'
+```
+
+The addon registers its service by patching `Engine` from `@ember/engine`.
+ember-source 7 dropped the AMD bundle, so on a classic build the v2 addon and
+the app tree can resolve *different copies* of ember-source — the patch is
+applied to one `Engine` class while your engines are built from the other. The
+underlying resolution bug is
+[embroider-build/embroider#2822](https://github.com/embroider-build/embroider/issues/2822).
+
+Migrating the app to Vite gives it a single module graph and resolves this.
+[`ember-vite-codemod`](https://github.com/mainmatter/ember-vite-codemod) handles
+most of it. Two things it cannot know about, both required for engines:
+
+- `app/router.js` must extend `@embroider/router`, not `@ember/routing/router`.
+  Without it `mount()` fails with *"not registered with its parent"*.
+- Engines must use `Resolver.withModules(compatModules)` and pass
+  `compatModules` to `loadInitializers`.
+
+See [`test-app`](test-app) for a complete working setup.
+
+If you are on ember-source 6 or below, nothing changes — the classic build
+works as it always has.
+
+### What CI currently verifies
+
+CI exercises ember-source 7.3 on a Vite/Embroider build. The `ember-lts-6.12`,
+`ember-beta` and `ember-canary` scenarios run but are allowed to fail: they are
+blocked on the same duplicate-ember-source bug above, via
+[ember-engines/ember-engines#918](https://github.com/ember-engines/ember-engines/issues/918).
+
+The supported range above is unchanged and the addon's own code has not changed,
+but be aware that versions below 7.3 are currently under-tested rather than
+actively verified.
+
 ## Installation
 
 ```
