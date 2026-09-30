@@ -3,19 +3,14 @@
 [![npm version](https://badge.fury.io/js/ember-engines-router-service.svg)](https://badge.fury.io/js/ember-engines-router-service)
 [![Build Status](https://github.com/villander/ember-engines-router-service/workflows/CI/badge.svg)](https://github.com/villander/ember-engines-router-service/actions?query=workflow%3ACI)
 
-This addon provides an API for authoring a [Router service](https://api.emberjs.com/ember/release/classes/RouterService) used in ember-engines.
-
+Provides the [Router service](https://api.emberjs.com/ember/release/classes/RouterService) inside [ember-engines](https://github.com/ember-engines/ember-engines): route names are relative to the engine, and `*External` methods reach the routes the engine's `externalRoutes` point to.
 
 ## Compatibility
 
 - Ember.js v4.1 or above
 - Embroider or ember-auto-import v2
 
-v4.1 is the floor because `refresh` relies on `RouterService#refresh`, added in
-that release. Earlier versions are not merely untested: ember-source 4.0 does
-not export `service` from `@ember/service`, and ember-cli 7 cannot build
-ember-source 3.28, so they cannot be exercised at all. CI covers 4.1 through
-canary.
+CI covers Ember 4.1 through canary.
 
 ### Using this addon with Ember Engines under Vite/Embroider
 
@@ -23,54 +18,58 @@ If your app builds with Vite/Embroider, engines need two things the
 [`ember-vite-codemod`](https://github.com/mainmatter/ember-vite-codemod) cannot
 infer for you:
 
-- `app/router.js` must extend `@embroider/router`, not `@ember/routing/router`.
-  Without it, `mount()` fails with *"not registered with its parent"*.
+- If any engine is lazy (`lazyLoading: true`), `app/router.js` must extend
+  `@embroider/router`, not `@ember/routing/router`: it loads a lazy engine's
+  bundle before Ember looks up the engine's routes. Without it, visiting a lazy
+  engine, or rendering a link to one, fails with *"You attempted to mount the
+  engine '…', but it is not registered with its parent"*. Apps with only eager
+  engines work with either router.
 - Each engine must use `Resolver.withModules(compatModules)` and pass
-  `compatModules` to `loadInitializers`.
+  `compatModules` to `loadInitializers`:
+
+  ```js
+  import Engine from 'ember-engines/engine';
+  import Resolver from 'ember-resolver';
+  import loadInitializers from 'ember-load-initializers';
+  import compatModules from '@embroider/virtual/compat-modules';
+  import config from './config/environment';
+
+  export default class MyEngine extends Engine {
+    modulePrefix = config.modulePrefix;
+    Resolver = Resolver.withModules(compatModules);
+  }
+
+  loadInitializers(MyEngine, config.modulePrefix, compatModules);
+  ```
 
 See [`test-app`](test-app) for a complete working setup.
 
-### A note for monorepos
-
-This addon registers its service by patching `Engine` from `@ember/engine`. That
-only works if the addon and your app resolve the **same copy** of `ember-source`.
-
-In a normal app that installs the addon from npm this is automatic. In a
-monorepo where the addon is a workspace package it is not: pnpm gives the
-addon's `ember-source` peerDependency a copy of its own, so the patch lands on a
-different `Engine` class than your engines are built from and you get
-
-```
-Assertion Failed: Attempting to inject an unknown injection: 'service:router'
-```
-
-The fix is to inject workspace dependencies so their peers resolve from the
-consuming app:
-
-```json
-{
-  "dependenciesMeta": {
-    "ember-engines-router-service": { "injected": true }
-  }
-}
-```
-
 ## Installation
 
-```
+```sh
 ember install ember-engines-router-service
 ```
 
 ## Usage
 
-Basically you have the full [RouterService](https://api.emberjs.com/ember/release/classes/RouterService) API **inside each engine**. That means you can use APIs such as `transitionTo` and `isActive`, plus the new "external routing" APIs such as `transitionToExternal` and `isActiveExternal` which help link `externalRoutes` together.
+Inside an engine, `@service router` is this service. It mirrors the [RouterService](https://api.emberjs.com/ember/release/classes/RouterService) API with route names relative to the engine, and adds an `*External` counterpart for each navigation method that takes the name of one of the engine's `externalRoutes`:
 
-Route names are relative to the engine, and so is `refresh`: `refresh('some.route')` reloads that route and its children, and `refresh()` reloads every active route of the engine, just as the app's `refresh()` reloads every active route of the app.
+| Engine routes  | External routes        |
+| -------------- | ---------------------- |
+| `transitionTo` | `transitionToExternal` |
+| `replaceWith`  | `replaceWithExternal`  |
+| `urlFor`       | `urlForExternal`       |
+| `isActive`     | `isActiveExternal`     |
+| `refresh`      | `refreshExternal`      |
+
+It also provides `currentRouteName` (relative to the engine), `currentURL`, `rootURL`, and the `routeWillChange` and `routeDidChange` events. `currentRoute`, `recognize`, `recognizeAndLoad` and `location` are not available.
+
+`refresh` is relative to the engine as well: `refresh('some.route')` reloads that route and its children, and `refresh()` reloads every active route of the engine, just as the app's `refresh()` reloads every active route of the app.
 
 ```js
 import Component from '@glimmer/component';
-import { inject as service } from '@ember/service';
-import { action } from "@ember/object";
+import { service } from '@ember/service';
+import { action } from '@ember/object';
 
 export default class SomeComponent extends Component {
   @service router;
@@ -104,19 +103,18 @@ For further documentation on this subject, view the [Engine Linking RFC](https:/
 The library ships types for TypeScript usage:
 
 ```ts
-import Service, { inject as service } from '@ember/service';
+import Service, { service } from '@ember/service';
 import type EnginesRouterService from 'ember-engines-router-service/services/router';
 
 export default class MyService extends Service {
   @service declare router: EnginesRouterService;
 
-  doSomeTranstion (): void {
-    const transition = this.router.transitionToExternal('someRouter');
+  doSomeTransition(): void {
+    const transition = this.router.transitionToExternal('home');
     transition.data.someKey = 'someValue';
   }
 }
 ```
-
 
 ## Contributing
 
