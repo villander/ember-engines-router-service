@@ -41,6 +41,11 @@ export default class extends Component {
   }
 
   @action
+  refreshPost() {
+    this.router.refresh('post');
+  }
+
+  @action
   refreshExternal() {
     this.router.refreshExternal('home');
   }

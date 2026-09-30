@@ -2,12 +2,15 @@
 /* eslint-disable ember/no-controller-access-in-routes */
 import Route from '@ember/routing/route';
 
+let count = 0;
+
 export default class extends Route {
   model(params) {
     return {
       user: this.modelFor('application'),
       id: params.id,
       title: `Post ${params.id}`,
+      count: count++,
     };
   }
 }

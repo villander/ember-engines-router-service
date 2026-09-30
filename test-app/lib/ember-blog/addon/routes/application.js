@@ -1,6 +1,8 @@
 import { service } from '@ember/service';
 import Route from '@ember/routing/route';
 
+let count = 0;
+
 export default class extends Route {
   @service exampleService;
 
@@ -11,6 +13,7 @@ export default class extends Route {
 
     return {
       name: 'Derek Zoolander',
+      count: count++,
     };
   }
 }
