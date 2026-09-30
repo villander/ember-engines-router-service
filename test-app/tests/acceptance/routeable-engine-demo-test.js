@@ -97,5 +97,27 @@ module('Acceptance | routeless engine demo', function (hooks) {
         ),
       );
     });
+
+    test('transitionTo with only query params updates the current route', async function (assert) {
+      await visit('/routable-engine-demo/ember-blog/post/1');
+      await click('.routable-transition-to-query-params-button');
+
+      assert.strictEqual(
+        currentURL(),
+        '/routable-engine-demo/ember-blog/post/1?lang=Korean',
+      );
+      assert.dom('.language').hasText('Korean');
+    });
+
+    test('replaceWith with only query params updates the current route', async function (assert) {
+      await visit('/routable-engine-demo/ember-blog/post/1');
+      await click('.routable-replace-with-query-params-button');
+
+      assert.strictEqual(
+        currentURL(),
+        '/routable-engine-demo/ember-blog/post/1?lang=Korean',
+      );
+      assert.dom('.language').hasText('Korean');
+    });
   });
 });

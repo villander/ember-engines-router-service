@@ -36,6 +36,14 @@ export default class extends Controller {
     });
   }
 
+  @action transitionToLanguageByService(lang) {
+    this.router.transitionTo({ queryParams: { lang } });
+  }
+
+  @action replaceWithLanguageByService(lang) {
+    this.router.replaceWith({ queryParams: { lang } });
+  }
+
   @action goToChineseVersion() {
     this.transitionTo({ queryParams: { lang: 'Chinese' } });
   }

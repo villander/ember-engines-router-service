@@ -90,14 +90,22 @@ export default class EngineRouterService extends Service.extend(Evented) {
     );
   }
 
-  transitionTo(routeName, ...args) {
+  transitionTo(...args) {
+    const [routeName, ...rest] = args;
+
+    // As with `RouterService`, only a leading string is a route name; models
+    // or query params on their own apply to the current route.
+    if (typeof routeName !== 'string') {
+      return this.externalRouter.transitionTo(...args);
+    }
+
     if (resemblesURL(routeName)) {
       return this.externalRouter.transitionTo(routeName);
     }
 
     return this.externalRouter.transitionTo(
       namespaceEngineRouteName(this._mountPoint, routeName),
-      ...args,
+      ...rest,
     );
   }
 
@@ -108,14 +116,20 @@ export default class EngineRouterService extends Service.extend(Evented) {
     );
   }
 
-  replaceWith(routeName, ...args) {
+  replaceWith(...args) {
+    const [routeName, ...rest] = args;
+
+    if (typeof routeName !== 'string') {
+      return this.externalRouter.replaceWith(...args);
+    }
+
     if (resemblesURL(routeName)) {
       return this.externalRouter.replaceWith(routeName);
     }
 
     return this.externalRouter.replaceWith(
       namespaceEngineRouteName(this._mountPoint, routeName),
-      ...args,
+      ...rest,
     );
   }
 
