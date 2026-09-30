@@ -19,13 +19,29 @@
 ## Running tests
 
 - `cd test-app`
-- `pnpm test` – Runs the test suite on the current Ember version
-- `pnpm test:watch` – Runs the test suite in "watch mode"
+- `pnpm test` – Lints and runs the test suite on the current Ember version
+- `pnpm test:ember` – Runs only the test suite
+- `pnpm exec ember try:one <scenario>` – Runs the test suite against one of the
+  Ember versions in [`config/ember-try.js`](test-app/config/ember-try.js), for
+  example `ember-canary`
+
+`test-app` installs the addon and the engines in `test-app/lib` as injected
+workspace packages (`dependenciesMeta.injected`), so their peer dependencies
+resolve from `test-app`. pnpm copies injected packages when it installs them:
+after editing anything under `test-app/lib`, run `pnpm install --force` so the
+next build picks up the change.
+
+### Supported Ember versions
+
+CI starts at Ember 4.1 because older versions cannot be exercised: ember-source
+4.0 does not export `service` from `@ember/service`, and ember-cli 7 cannot build
+ember-source 3.28.
 
 ## Running the test application
 
-- `cd test-app`
-- `pnpm start`
-- Visit the test application at [http://localhost:4200](http://localhost:4200).
+- `pnpm start` from the repository root rebuilds the addon on change and serves
+  `test-app`
+- Visit the URL Vite prints, [http://localhost:5173](http://localhost:5173) by
+  default.
 
 For more information on using ember-cli, visit [https://cli.emberjs.com/release/](https://cli.emberjs.com/release/).
