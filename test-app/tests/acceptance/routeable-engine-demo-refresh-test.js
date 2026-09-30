@@ -37,7 +37,10 @@ if (macroCondition(dependencySatisfies('ember-source', '>= 4.1.0'))) {
       test('refresh external route', async function (assert) {
         await visit('/routable-engine-demo/ember-blog/new');
 
-        let counter = await find('.route-refresh-counter').textContent;
+        // The external route is the host application route, so read the
+        // counter this asserts on. `.route-refresh-counter` belongs to the
+        // engine's own route and only tracked this one by coincidence.
+        let counter = await find('.global-refresh-counter').textContent;
         await click('.refresh-external');
 
         counter = parseInt(counter, 10);

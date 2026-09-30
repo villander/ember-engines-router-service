@@ -1,6 +1,10 @@
 packages:
   - ember-engines-router-service
   - test-app
+  - test-app/lib/*
 
 onlyBuiltDependencies:
   - core-js
+
+overrides:
+  ember-cli-htmlbars: ^7.0.1

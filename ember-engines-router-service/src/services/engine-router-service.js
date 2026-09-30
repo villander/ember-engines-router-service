@@ -5,7 +5,6 @@ import { action, computed } from '@ember/object';
 import { reads } from '@ember/object/computed';
 import { getOwner } from '@ember/application';
 import Evented from '@ember/object/evented';
-import { macroCondition, dependencySatisfies } from '@embroider/macros';
 import { namespaceEngineRouteName } from '../utils/namespace-engine-route-name.js';
 import { getRootOwner } from '../utils/root-owner.js';
 import { resemblesURL } from '../utils/resembles-url.js';
@@ -70,29 +69,25 @@ export default class EngineRouterService extends Service.extend(Evented) {
   }
 
   refresh(routeName = this.currentRouteName, ...args) {
-    if (macroCondition(dependencySatisfies('ember-source', '>= 4.1.0'))) {
-      if (resemblesURL(routeName)) {
-        return this.externalRouter.refresh(routeName);
-      }
+    assert(warningMessage, typeof this.externalRouter.refresh === 'function');
 
-      return this.externalRouter.refresh(
-        namespaceEngineRouteName(this._mountPoint, routeName),
-        ...args,
-      );
-    } else {
-      assert(warningMessage);
+    if (resemblesURL(routeName)) {
+      return this.externalRouter.refresh(routeName);
     }
+
+    return this.externalRouter.refresh(
+      namespaceEngineRouteName(this._mountPoint, routeName),
+      ...args,
+    );
   }
 
   refreshExternal(routeName, ...args) {
-    if (macroCondition(dependencySatisfies('ember-source', '>= 4.1.0'))) {
-      return this.externalRouter.refresh(
-        this.getExternalRouteName(routeName),
-        ...args,
-      );
-    } else {
-      assert(warningMessage);
-    }
+    assert(warningMessage, typeof this.externalRouter.refresh === 'function');
+
+    return this.externalRouter.refresh(
+      this.getExternalRouteName(routeName),
+      ...args,
+    );
   }
 
   transitionTo(routeName, ...args) {

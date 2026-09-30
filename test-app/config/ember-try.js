@@ -1,33 +1,21 @@
 'use strict';
 
-const getChannelURL = require('ember-source-channel-url');
-const { embroiderSafe, embroiderOptimized } = require('@embroider/test-setup');
+// Companions that predate Ember 7; the versions in package.json assume it.
+const olderToolchain = {
+  '@ember/test-helpers': '^4.0.5',
+  '@glimmer/component': '^1.1.2',
+};
 
 module.exports = async function () {
   return {
     usePnpm: true,
     scenarios: [
       {
-        name: 'ember-lts-3.24',
+        name: 'ember-4.1',
         npm: {
           devDependencies: {
-            'ember-cli': '~3.24.0',
-            'ember-resolver': '^9.0.0',
-            'ember-source': '~3.24.3',
-            'ember-qunit': '^5.1.5',
-            '@ember/test-helpers': '^2.4.0',
-          },
-        },
-      },
-      {
-        name: 'ember-lts-3.28',
-        npm: {
-          devDependencies: {
-            'ember-cli': '~3.28.0',
-            'ember-resolver': '^9.0.0',
-            'ember-source': '~3.28.0',
-            'ember-qunit': '^5.1.5',
-            '@ember/test-helpers': '^2.4.0',
+            'ember-source': '~4.1.0',
+            ...olderToolchain,
           },
         },
       },
@@ -35,8 +23,8 @@ module.exports = async function () {
         name: 'ember-lts-4.4',
         npm: {
           devDependencies: {
-            'ember-resolver': '^9.0.0',
             'ember-source': '~4.4.0',
+            ...olderToolchain,
           },
         },
       },
@@ -44,8 +32,8 @@ module.exports = async function () {
         name: 'ember-lts-4.8',
         npm: {
           devDependencies: {
-            'ember-resolver': '^9.0.0',
             'ember-source': '~4.8.0',
+            ...olderToolchain,
           },
         },
       },
@@ -54,6 +42,7 @@ module.exports = async function () {
         npm: {
           devDependencies: {
             'ember-source': '~4.12.0',
+            ...olderToolchain,
           },
         },
       },
@@ -62,6 +51,7 @@ module.exports = async function () {
         npm: {
           devDependencies: {
             'ember-source': '~5.4.0',
+            ...olderToolchain,
           },
         },
       },
@@ -70,6 +60,24 @@ module.exports = async function () {
         npm: {
           devDependencies: {
             'ember-source': '~5.8.0',
+            ...olderToolchain,
+          },
+        },
+      },
+      {
+        name: 'ember-lts-5.12',
+        npm: {
+          devDependencies: {
+            'ember-source': '~5.12.0',
+            ...olderToolchain,
+          },
+        },
+      },
+      {
+        name: 'ember-lts-6.12',
+        npm: {
+          devDependencies: {
+            'ember-source': 'lts',
           },
         },
       },
@@ -77,7 +85,7 @@ module.exports = async function () {
         name: 'ember-release',
         npm: {
           devDependencies: {
-            'ember-source': await getChannelURL('release'),
+            'ember-source': 'latest',
           },
         },
       },
@@ -85,7 +93,7 @@ module.exports = async function () {
         name: 'ember-beta',
         npm: {
           devDependencies: {
-            'ember-source': await getChannelURL('beta'),
+            'ember-source': 'beta',
           },
         },
       },
@@ -93,12 +101,24 @@ module.exports = async function () {
         name: 'ember-canary',
         npm: {
           devDependencies: {
-            'ember-source': await getChannelURL('canary'),
+            'ember-source': 'alpha',
           },
         },
       },
-      embroiderSafe(),
-      embroiderOptimized(),
+      // The app always builds with Embroider, so these vary the compat
+      // options rather than swapping the build. @embroider/test-setup's
+      // embroiderSafe/embroiderOptimized cannot be used: they pin Embroider 3
+      // and @embroider/webpack, which conflict with @embroider/vite.
+      {
+        name: 'embroider-safe',
+        env: { EMBROIDER_TEST_SETUP_OPTIONS: 'safe' },
+        npm: { devDependencies: {} },
+      },
+      {
+        name: 'embroider-optimized',
+        env: { EMBROIDER_TEST_SETUP_OPTIONS: 'optimized' },
+        npm: { devDependencies: {} },
+      },
     ],
   };
 };
