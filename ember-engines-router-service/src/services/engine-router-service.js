@@ -48,12 +48,16 @@ export default class EngineRouterService extends Service.extend(Evented) {
 
   @computed('_mountPoint.length', 'externalRouter.currentRouteName')
   get currentRouteName() {
-    if (this.externalRouter.currentRouteName === this._mountPoint) {
+    const routeName = this.externalRouter.currentRouteName;
+
+    // Nothing has transitioned yet, as in a rendering test.
+    if (!routeName) {
+      return routeName;
+    }
+    if (routeName === this._mountPoint) {
       return 'application';
     }
-    return this.externalRouter.currentRouteName.slice(
-      this._mountPoint.length + 1,
-    );
+    return routeName.slice(this._mountPoint.length + 1);
   }
 
   get externalRouter() {
